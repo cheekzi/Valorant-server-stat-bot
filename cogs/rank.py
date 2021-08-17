@@ -6,7 +6,7 @@ from .utils.rank_utils import username_to_data,getrank
 from discord_components import *
 
 with open ('././config/config.json', 'r') as f:
-    config = json.load(f)
+    config = json.load(f, strict=False)
     prefix = config['prefix']
 
 class rank(commands.Cog):
