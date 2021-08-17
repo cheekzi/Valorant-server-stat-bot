@@ -14,7 +14,7 @@ import sqlite3
 
 
 with open ('config/config.json', 'r') as f:
-    config = json.load(f)
+    config = json.load(f, strict=False)
     token = config['token']
     prefix = config['prefix']
     database_url = config['database_url']
