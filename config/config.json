@@ -1,6 +1,5 @@
 {
     "token":"NzA3NjM0MzgwOTI3MTM5OTIx.XrLqDw.Q8nt7t4FG6yPDXe2ENu4BLwk96A",
     "prefix": "!",
-    "database_url":"postgres://jpywkjzbbhshby:2fc2a2d302eef06958bdafffcbb1caa5423c0917b51692030735d6507bffc58b@ec2-54-170-163-224.eu-west-1.compute.amazonaws.com:5432/d380aaa7qbdshb
-"
+    "database_url":"postgres://jpywkjzbbhshby:2fc2a2d302eef06958bdafffcbb1caa5423c0917b51692030735d6507bffc58b@ec2-54-170-163-224.eu-west-1.compute.amazonaws.com:5432/d380aaa7qbdshb"
 }
