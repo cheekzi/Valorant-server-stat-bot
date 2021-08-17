@@ -7,7 +7,7 @@ from discord_components import *
 from discord.ext.commands.errors import MissingRequiredArgument
 
 with open ('././config/config.json', 'r') as f:
-    config = json.load(f)
+    config = json.load(f, strict=False)
     prefix = config['prefix']
 
 
