@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import traceback
 import sys
+import os
 import json 
 import requests
 from discord_components import *
@@ -54,4 +55,4 @@ if __name__ == "__main__":
             traceback.print_exc()
 
 bot.loop.run_until_complete(create_db_pool())
-bot.run(f"{token}")
+bot.run(os.environ['DISCORD_TOKEN'])
