@@ -80,7 +80,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="classic":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
