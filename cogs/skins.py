@@ -245,7 +245,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="shorty":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -343,7 +343,7 @@ class skin(commands.Cog):
 
         if _res.user == ctx.author:
             if _res.component[0].value=="frenzy":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -497,7 +497,7 @@ class skin(commands.Cog):
 
         if _res.user == ctx.author:
             if _res.component[0].value=="ghost":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -710,7 +710,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="spectre":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -966,7 +966,7 @@ class skin(commands.Cog):
 
         if _res.user == ctx.author:
             if _res.component[0].value=="bucky":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -1139,7 +1139,7 @@ class skin(commands.Cog):
 
         if _res.user == ctx.author:
             if _res.component[0].value=="judge":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -1314,7 +1314,7 @@ class skin(commands.Cog):
 
         if _res.user == ctx.author:
             if _res.component[0].value=="bulldog":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -1433,7 +1433,7 @@ class skin(commands.Cog):
 
         if _res.user == ctx.author:
             if _res.component[0].value=="guardian":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -1610,7 +1610,7 @@ class skin(commands.Cog):
                 
         if _res.user == ctx.author:
             if _res.component[0].value=="vandal":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -1900,7 +1900,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="ares":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -2053,7 +2053,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="odin":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -2165,7 +2165,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="marshal":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -2293,7 +2293,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="stinger":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -2427,7 +2427,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="phantom":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -2664,7 +2664,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="sheriff":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
@@ -2889,7 +2889,7 @@ class skin(commands.Cog):
         
         if _res.user == ctx.author:
             if _res.component[0].value=="operator":
-                await ctx.send("```SELECT THE SKIN```",
+                await ctx.send("Select the Skin",
                     components=[
                         Select(placeholder='Selection',
                         options=[
