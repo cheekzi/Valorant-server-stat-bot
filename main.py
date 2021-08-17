@@ -43,7 +43,7 @@ async def on_ready():
 
 
 with open ('extension/extension.json', 'r') as data:
-    cog_data = json.load(data)
+    cog_data = json.load(data, strict=False)
     extension = cog_data['extension']
 
 if __name__ == "__main__":
