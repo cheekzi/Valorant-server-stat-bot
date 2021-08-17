@@ -7,7 +7,7 @@ from .utils import match_resource as res
 from datetime import datetime
 
 with open ('././config/config.json', 'r') as f:
-    config = json.load(f)
+    config = json.load(f, strict=False)
     prefix = config['prefix']
 
 
