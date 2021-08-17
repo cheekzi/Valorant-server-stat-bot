@@ -8,7 +8,7 @@ from .utils.shop_utils import username_to_data,getVersion,priceconvert,skins,che
 from discord_components import *
 
 with open ('././config/config.json', 'r') as f:
-    config = json.load(f)
+    config = json.load(f, strict=False)
     prefix = config['prefix']
 
 class itemshop(commands.Cog):
