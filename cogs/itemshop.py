@@ -7,6 +7,7 @@ import json
 from .utils.shop_utils import username_to_data,getVersion,priceconvert,skins,check_item_shop
 from .utils.profile_utils import loggedInStats, getingamename
 from discord_components import *
+from datetime import datetime
 
 with open ('././config/config.json', 'r') as f:
     config = json.load(f, strict=False)
