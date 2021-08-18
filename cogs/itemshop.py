@@ -18,20 +18,17 @@ class itemshop(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
             
-        if message.author != message.author.bot:
+        if message.author != discord.Client().user:
             if not message.guild:
                 
                 author_id = str(message.author.id)
                 user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
                     
                 msg = await message.channel.history(limit=2).flatten()
-                dic = None
                 
                 msg = msg[1].embeds
                 for ms in msg:
                     dic = ms.to_dict()
-                print(dic)
-                print(dic["fields"][0]["name"])
                 
                     
                 if dic["fields"][0]["name"] == "Username": 
