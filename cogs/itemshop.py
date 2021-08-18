@@ -143,7 +143,7 @@ class itemshop(commands.Cog):
                         embed.add_field(name="Rank Rating",value=rr,inline=False)
 
                         footer = (
-                            "🟢 Time Played " + profile["time_played"] + " Account-Level " + profile["account_level"]
+                            "🟢 Time Played " + str(profile["time_played"]) + " Account-Level " + str(profile["account_level"])
                         )
                         embed.set_footer(text=footer)
                         await message.channel.send(embed=embed)
