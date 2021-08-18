@@ -67,7 +67,7 @@ class itemshop(commands.Cog):
     async def login(self, ctx):
         embed = discord.Embed(
             color = discord.Color.blue(),
-            description = "Check you DM"
+            description = "Check your DM"
         )
         await ctx.send(embed=embed)
 
@@ -75,10 +75,10 @@ class itemshop(commands.Cog):
             color=0xA6FF0A,
             title="LOGIN PAGE"
         )
-        dm_embed.add_field(name ="**username**",value="Enter you valorant username\nfor example \n`username=typhonshambo` if you username is typhonshambo",inline=False)
-        dm_embed.add_field(name ="**password**",value="Enter you valorant password\nfor example \n`password=123` if you username is 123",inline=False)
-        dm_embed.add_field(name ="**region**",value="Enter you valorant region\nfor example \n`region=ap` if you region is ap\n to get region list use `!reglist` here",inline=False)
-        dm_embed.add_field(name="NOTE",value ="You need to enter you `username` **first** if you are new here!!\nAnd if you write the username or password incorrect \ntype again the same thing to change it")
+  
+        #dm_embed.add_field(name ="**password**",value="Enter you valorant password\nfor example \n`password=123` if you username is 123",inline=False)
+        #dm_embed.add_field(name ="**region**",value="Enter you valorant region\nfor example \n`region=ap` if you region is ap\n to get region list use `!reglist` here",inline=False)
+        dm_embed.add_field(name="NOTE",value ="`Log In`to your Valorant Account in Order to get personal Informations (Shop, Stats, Rank..) \n Stay logged in for easier access or \n `Log Out` afterwards with **!Logout**")
 
         await ctx.author.send(embed=dm_embed)
         
