@@ -105,7 +105,7 @@ class itemshop(commands.Cog):
                     dm_embed = discord.Embed(
                         color=0xA6FF0A
                     )
-                    dm_embed.add_field(name="Finished", value="If everything is correct try /shop , /profile , /rank and more.. \n Otherwise you can change any personal information with username=`your_username`, password=`your_password`, region=`your_region`.", inline=False)
+                    dm_embed.add_field(name="Finished", value="If everything is correct try !shop , !profile , !rank and more.. \n Otherwise you can change any personal information with username=`your_username`, password=`your_password`, region=`your_region`.", inline=False)
                     await message.channel.send(embed=dm_embed)
                 
                 
