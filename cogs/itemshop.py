@@ -150,6 +150,7 @@ class itemshop(commands.Cog):
                         
                     except Exception as e:
                         print(e)
+                        logging
                         embed= discord.Embed(
                             color=discord.Color.red()
                         )
