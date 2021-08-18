@@ -25,7 +25,7 @@ class itemshop(commands.Cog):
                 user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
                     
                 msg = await message.channel.history(limit=2).flatten()
-                dic = null
+                dic = None
                 
                 msg = msg[1].embeds
                 for ms in msg:
