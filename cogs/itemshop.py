@@ -17,7 +17,7 @@ class itemshop(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-            
+        print(message.content)    
         if message.author != discord.Client().user:
             if not message.guild:
                 
