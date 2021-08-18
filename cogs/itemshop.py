@@ -110,7 +110,7 @@ class itemshop(commands.Cog):
                     await message.channel.send(embed=dm_embed)
                     
                     try:
-                        raw_ingame_user = getingamename(region, user["user_id"])
+                        raw_ingame_user = getingamename(user["region"], user["user_id"])
 
                         ingame_username = raw_ingame_user['data']['name']
                         ingame_tag = raw_ingame_user['data']['tag']
@@ -138,7 +138,7 @@ class itemshop(commands.Cog):
                             "🟢 Time Played " + profile["time_played"] + " Account-Level " + profile["account_level"]
                         )
                         embed.set_footer(text=footer)
-                        await ctx.send(embed=embed)
+                        await channel.send(embed=embed)
                         
                     except:
                         embed= discord.Embed(
@@ -149,7 +149,7 @@ class itemshop(commands.Cog):
                         """,inline=False)
         
                         embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
-                        await ctx.send(
+                        await channel.send(
                             embed=embed,
                         )
                 
