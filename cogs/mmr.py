@@ -42,7 +42,7 @@ class mmr(commands.Cog):
             
             try:
                 mmrHistory = getMMRHistory_name(name, tag)
-                for i in range 5:
+                for i in range(5):
                     rank = mmrHistory["data"][i]["currenttierpatched"]
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
