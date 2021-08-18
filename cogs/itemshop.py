@@ -118,8 +118,8 @@ class itemshop(commands.Cog):
             title="LOGIN PAGE"
         )
  
-        dm_embed.add_field(name="NOTE",value ="`Log In`to your Valorant Account in Order to get personal Informations (Shop, Stats, Rank..)",inline=False)
-        dm_embed.add_field(name="Information",value ="Stay logged in for easier access or \n `Log Out` afterwards with **!Logout** \n You can also change any false information with username=`your_username`, password=`your_password`, region=`your_region` still afterwards.", inline=False)
+        dm_embed.add_field(name="NOTE",value ="`Log In` to your Valorant Account in Order to get personal Informations (Shop, Stats, Rank..)",inline=False)
+        dm_embed.add_field(name="Information",value ="Stay logged in for easier access or \n `Log Out` afterwards with **!Logout** \n You can also still change any false information with username=`your_username`, password=`your_password` or region=`your_region` still.", inline=False)
 
         await ctx.author.send(embed=dm_embed)
         
@@ -127,7 +127,7 @@ class itemshop(commands.Cog):
             color=discord.Color.red()
         )
         next_embed.add_field(name ="Region",value="Enter your **Region** \n for example `eu`",inline=False)
-        await message.channel.send(embed=next_embed)
+        await ctx.author.send(embed=next_embed)
         
 
 
