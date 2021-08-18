@@ -36,7 +36,7 @@ class mmr(commands.Cog):
             except Exception as e:
                 print(e)
         else:
-            username = name.content.split('#')
+            username = name.split('#')
             name=username[0]
             tag=username[1]
             
