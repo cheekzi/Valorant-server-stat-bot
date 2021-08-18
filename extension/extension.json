@@ -1,14 +1,7 @@
 {
     "extension":[
-        "cogs.vstats",
         "cogs.skins",
-        "cogs.agents",
         "cogs.help",
-        "cogs.maps",
-        "cogs.invite",
-        "cogs.weapon",
-        "cogs.aceSound",
-        "cogs.specs",
         "cogs.itemshop",
         "cogs.bundles",
         "cogs.rank",
