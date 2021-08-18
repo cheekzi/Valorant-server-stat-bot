@@ -28,7 +28,7 @@ class itemshop(commands.Cog):
                 msg = msg[1]
                 message.channel.send(msg)
                     
-                if msg.author == MyClient().user:
+                if msg.author == message.author.bot:
                     if "username" in msg.content.lower(): 
                         if not user:
                             await self.client.pg_con.execute("INSERT INTO riotpwd (user_id, username) VALUES ($1, $2)", author_id, username[1])
