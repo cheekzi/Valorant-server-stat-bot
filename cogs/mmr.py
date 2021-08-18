@@ -49,6 +49,6 @@ class mmr(commands.Cog):
                     ctx.send(rank + str(mmr) + str(change))
 
 def setup(client):
-    client.add_cog(recentMMR(client))
+    client.add_cog(mmr(client))
     print("recentMMR         | Imported") 
 
