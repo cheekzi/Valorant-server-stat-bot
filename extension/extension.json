@@ -7,6 +7,6 @@
         "cogs.rank",
         "cogs.profile",
         "cogs.recentMatch",
-        "cogs.recentMMR"
+        "cogs.mmr"
     ]
 }
