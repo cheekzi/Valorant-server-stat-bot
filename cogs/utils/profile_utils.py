@@ -106,6 +106,7 @@ async def loggedInStats(username, tagline):
     stats = data["segments"][0]["stats"]
     rank = stats["rank"]["metadata"]["tierName"]
     rankIconUrl = stats["rank"]["metadata"]["iconUrl"]
+    time_played = stats["timePlayed"]["displayValue"]
     
     req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v1/account/{username}/{tagline}")
     req_data = req_data.json()
@@ -117,6 +118,7 @@ async def loggedInStats(username, tagline):
         rank=rank,
         rankIconUrl=rankIconUrl,
         account_level=account_level,
+        time_played=time_played,
     )
 
     return DATA
