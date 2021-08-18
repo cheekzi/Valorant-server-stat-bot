@@ -5,6 +5,7 @@ import asyncio
 from discord.ext import commands
 import json 
 from .utils.shop_utils import username_to_data,getVersion,priceconvert,skins,check_item_shop
+from .utils.profile_utils import loggedInStats, getingamename
 from discord_components import *
 
 with open ('././config/config.json', 'r') as f:
@@ -105,9 +106,54 @@ class itemshop(commands.Cog):
                     dm_embed = discord.Embed(
                         color=0xA6FF0A
                     )
-                    dm_embed.add_field(name="Finished", value="If everything is correct try !shop , !profile , !rank and more.. \n Otherwise you can change any personal information with username=`your_username`, password=`your_password`, region=`your_region`.", inline=False)
+                    dm_embed.add_field(name="Finished", value="If everything is correct try !shop , !profile , !rank and more.. \n Otherwise you can change any personal information with username=`your_username`, password=`your_password`, region=`your_region`. \n **Loading**", inline=False)
                     await message.channel.send(embed=dm_embed)
-                
+                    
+                    try:
+                        user_data = username_to_data(username, password)
+                        user_id = user_data[2]
+                        raw_ingame_user = getingamename(region, user_id)
+
+                        ingame_username = raw_ingame_user['data']['name']
+                        ingame_tag = raw_ingame_user['data']['tag']
+                        player_name = ingame_username+" #" +ingame_tag
+                        ranking_in_tier = raw_ingame_user['data']['current_data']['ranking_in_tier']
+
+                        profile = await loggedInStats(ingame_username,ingame_tag)
+                        rank = profile["rank"]
+                        
+                        if user:
+
+                            rr = f"**{ranking_in_tier} / 100** RR\n"
+
+                        embed = discord.Embed(
+                            title=rank,
+                            description=description, 
+                            timestamp=datetime.utcnow(), 
+                            color = 0x02FCCF
+                        )
+                        embed.set_thumbnail(url=profile["rankIconUrl"])
+                        embed.set_author(name=player_name, icon_url=profile["avatarUrl"],url=profile["avatarUrl"])
+                        embed.add_field(name="Rank Rating",value=rr,inline=False)
+
+                        footer = (
+                            "🟢 Time Played " + profile["time_played"] + " Account-Level " + profile["account_level"]
+                        )
+                        embed.set_footer(text=footer)
+                        await ctx.send(embed=embed)
+                        
+                    except:
+                        embed= discord.Embed(
+                            color=discord.Color.red()
+                        )
+                        embed.add_field(name ="SOME ERROR OCCURED...",value="""
+                        Either your `username` \nor your `password` \nor your `region` is incorrect.
+                        """,inline=False)
+        
+                        embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
+                        await ctx.send(
+                            embed=embed,
+                        )
                 
                 
     
