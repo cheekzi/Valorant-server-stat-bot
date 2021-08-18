@@ -76,7 +76,7 @@ class skin(commands.Cog):
             ]
         )
         _res = await self.bot.wait_for("select_option", check=lambda i: i.component[0])
-        input1.delete()
+        if(_res) input1.delete()
 
         
         if _res.user == ctx.author:
