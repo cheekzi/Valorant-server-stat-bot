@@ -25,9 +25,12 @@ class itemshop(commands.Cog):
             if not message.guild:
                     
                 msg = await message.channel.history(limit=2).flatten()
-                for ms in msg:
-                    print(ms.content)
-                    
+                try:
+                    msg = msg[1].embeds
+                    for ms in msg:
+                        print(ms.to_dict())
+                except:
+                    print("Fehler")
                 if message.author == message.author.bot:
                     if "username" in msg.content.lower(): 
                         if not user:
