@@ -28,7 +28,7 @@ class itemshop(commands.Cog):
                 for ms in msg:
                     print(ms.content)
                     
-                if msg.author == message.author.bot:
+                if message.author == message.author.bot:
                     if "username" in msg.content.lower(): 
                         if not user:
                             await self.client.pg_con.execute("INSERT INTO riotpwd (user_id, username) VALUES ($1, $2)", author_id, username[1])
@@ -118,15 +118,15 @@ class itemshop(commands.Cog):
             title="LOGIN PAGE"
         )
  
-        dm_embed.add_field(name="NOTE",value ="`Log In` to your Valorant Account in Order to get personal Informations (Shop, Stats, Rank..)",inline=False)
-        dm_embed.add_field(name="Information",value ="Stay logged in for easier access or \n `Log Out` afterwards with **!Logout** \n You can also still change any false information with username=`your_username`, password=`your_password` or region=`your_region` still.", inline=False)
+        dm_embed.add_field(name="NOTE",value ="`Log In` to your Valorant Account in Order to use the Bots Features (Shop, Stats, Rank..)",inline=False)
+        dm_embed.add_field(name="Information",value ="Stay logged in for easier access or \n `Log Out` afterwards with **!Logout** \n You can also still change any false information with username=`your_username`, password=`your_password` or region=`your_region` in this Chat afterwards.", inline=False)
 
         await ctx.author.send(embed=dm_embed)
         
         next_embed = discord.Embed(
             color=discord.Color.red()
         )
-        next_embed.add_field(name ="Username",value="Enter your **Username** \n for example `cheekz`",inline=False)
+        next_embed.add_field(name ="Username",value="Enter your **Username** now \n for example `cheekz`",inline=False)
         await ctx.author.send(embed=next_embed)
         
 
