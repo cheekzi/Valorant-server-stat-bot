@@ -30,6 +30,8 @@ class itemshop(commands.Cog):
                 for ms in msg:
                     ms = ms.to_dict()
                     print(ms)
+                    print(ms[0][1])
+                    print(ms["fields"]["name"])
                 
                     
                 if ms["fields"]["name"] == "Username": 
