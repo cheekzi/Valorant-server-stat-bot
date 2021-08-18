@@ -51,7 +51,7 @@ class skin(commands.Cog):
 
     @commands.group(aliases = ['skins'])
     async def skin(self, ctx):
-        input1 = await ctx.send("Select a gun",
+        await ctx.send("Select a gun",
             components=[
                 Select(placeholder='Selection',
                 options=[
@@ -76,7 +76,6 @@ class skin(commands.Cog):
             ]
         )
         _res = await self.bot.wait_for("select_option", check=lambda i: i.component[0])
-        if(_res) input1.delete()
 
         
         if _res.user == ctx.author:
