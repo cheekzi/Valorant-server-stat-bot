@@ -40,6 +40,9 @@ def username_to_data(username, password):
 def getrank(region, user_id):
     req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/{region}/{user_id}") 
     whole_data = req_data.json()
+    return whole_data
 
-    
+def getMMRHistory(region, user_id):
+    req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/{region}/{user_id}")
+    whole_data = req_data.json()  
     return whole_data
