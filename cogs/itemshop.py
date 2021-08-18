@@ -24,7 +24,7 @@ class itemshop(commands.Cog):
         if message.author != message.author.bot:
             if not message.guild:
                     
-                msg = await message.channel.history(limit=2).flatten()
+                msg = await message.channel.history(limit=2).flatten().embeds
                 msg = msg[1]
                 message.channel.send(msg)
                     
