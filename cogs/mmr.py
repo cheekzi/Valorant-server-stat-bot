@@ -9,7 +9,7 @@ with open ('././config/config.json', 'r') as f:
     config = json.load(f, strict=False)
     prefix = config['prefix']
 
-class rank(commands.Cog):
+class mmr(commands.Cog):
     def __init__(self, client):
         self.client = client
 
