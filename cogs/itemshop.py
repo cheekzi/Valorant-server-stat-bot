@@ -18,7 +18,7 @@ class itemshop(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
             
-        if !(message.author.bot):
+        if not message.author.bot:
             print(message.content)
             if not message.guild:
                 
