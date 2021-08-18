@@ -46,3 +46,8 @@ def getMMRHistory(region, user_id):
     req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/{region}/{user_id}")
     whole_data = req_data.json()  
     return whole_data
+
+def getMMRHistory_name(name, tag):
+    req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v1/mmr-history/eu/{name}/{tag}")
+    whole_data = req_data.json()
+    return whole_data
