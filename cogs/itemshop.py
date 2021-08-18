@@ -66,6 +66,7 @@ class itemshop(commands.Cog):
                     
                 msg = await message.channel.history(limit=2).flatten()
                 
+                dic = None
                 msg = msg[1].embeds
                 for ms in msg:
                     dic = ms.to_dict()
