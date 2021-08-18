@@ -31,10 +31,10 @@ class itemshop(commands.Cog):
                 for ms in msg:
                     dic = ms.to_dict()
                 print(dic)
-                print(dic["fields"]["name"])
+                print(dic["fields"][0]["name"])
                 
                     
-                if dic["fields"]["name"] == "Username": 
+                if dic["fields"][0]["name"] == "Username": 
                     if not user:
                         await self.client.pg_con.execute("INSERT INTO riotpwd (user_id, username) VALUES ($1, $2)", author_id, message.content)
 
@@ -48,7 +48,7 @@ class itemshop(commands.Cog):
                     dm_embed.add_field(name ="Password",value="Enter your **Password** \n for example `123`",inline=False)
                     await message.channel.send(embed=dm_embed)
 
-                elif dic["fields"]["name"] == "Password":
+                elif dic["fields"][0]["name"] == "Password":
                     await self.client.pg_con.execute("UPDATE riotpwd SET password = $1 WHERE user_id = $2",message.content, author_id)
                     await message.channel.send("Successfully updated your password")
 
@@ -58,7 +58,7 @@ class itemshop(commands.Cog):
                     dm_embed.add_field(name ="Region",value="Enter your **Region** \n for example `eu`",inline=False)
                     await message.channel.send(embed=dm_embed)
 
-                elif dic["fields"]["name"] == "Region":
+                elif dic["fields"][0]["name"] == "Region":
                     await self.client.pg_con.execute("UPDATE riotpwd SET region = $1 WHERE user_id = $2",message.content, author_id)
                     await message.channel.send("Successfully updated your region")
 
