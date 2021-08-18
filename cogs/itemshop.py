@@ -134,7 +134,6 @@ class itemshop(commands.Cog):
 
                         embed = discord.Embed(
                             title=rank,
-                            description=description, 
                             timestamp=datetime.utcnow(), 
                             color = 0x02FCCF
                         )
