@@ -110,9 +110,7 @@ class itemshop(commands.Cog):
                     await message.channel.send(embed=dm_embed)
                     
                     try:
-                        user_data = username_to_data(username, password)
-                        user_id = user_data[2]
-                        raw_ingame_user = getingamename(region, user_id)
+                        raw_ingame_user = getingamename(region, user["user_id"])
 
                         ingame_username = raw_ingame_user['data']['name']
                         ingame_tag = raw_ingame_user['data']['tag']
