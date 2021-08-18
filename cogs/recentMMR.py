@@ -27,7 +27,7 @@ class rank(commands.Cog):
                 user_data = username_to_data(username, password)
                 user_id = user_data[2]
                 mmrHistory = getMMRHistory(region, user_id)
-                for i in range 5:
+                for i in range(5):
                     rank = mmrHistory["data"][i]["currenttierpatched"]
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
