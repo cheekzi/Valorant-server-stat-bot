@@ -149,8 +149,6 @@ class itemshop(commands.Cog):
                         await message.channel.send(embed=embed)
                         
                     except Exception as e:
-                        print(e)
-                        logging.info('blah', exc_info=True)
                         embed= discord.Embed(
                             color=discord.Color.red()
                         )
