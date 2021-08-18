@@ -94,3 +94,24 @@ async def profile_stats(username, tagline):
 
     return DATA
 
+async def loggedInStats(username, tagline):
+    profile_api = f"https://api.tracker.gg/api/v2/valorant/standard/profile/riot/{username}%23{tagline}"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(profile_api, json={}) as r:
+            data = (await r.json())["data"]
+    
+    user = data["platformInfo"]["platformUserIdentifier"]
+    avatarUrl = data["platformInfo"]["avatarUrl"]
+    
+    rank = stats["rank"]["metadata"]["tierName"]
+    rankIconUrl = stats["rank"]["metadata"]["iconUrl"]
+    
+    DATA = dict(
+        user=user,
+        avatarUrl=avatarUrl,
+        rank=rank,
+        rankIconUrl=rankIconUrl,
+    )
+
+    return DATA
+    
