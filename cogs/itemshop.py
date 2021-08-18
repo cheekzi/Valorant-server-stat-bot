@@ -44,6 +44,10 @@ class itemshop(commands.Cog):
                     await self.client.pg_con.execute("UPDATE riotpwd SET region = $1 WHERE user_id = $2",region[1], author_id)
                     await message.channel.send("Successfully updated your region")
                 
+                if message.content.startswith('!logout'):
+                    await self.client.pg_con.execute("DELETE FROM riotpwd WHERE user_id = $1",author_id)
+                    await message.channel.send("Successfully logged you out")
+                
                 if message.content.startswith('!reglist'):
                     embed = discord.Embed(
                         color= discord.Color.blue()
