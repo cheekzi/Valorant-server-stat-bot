@@ -147,21 +147,10 @@ class itemshop(commands.Cog):
                         )
                         embed.set_footer(text=footer)
                         await message.channel.send(embed=embed)
+                        await message.channel.send("**Connected**.")
                         
                     except Exception as e:
-                        print(e)
-                        logging
-                        embed= discord.Embed(
-                            color=discord.Color.red()
-                        )
-                        embed.add_field(name ="SOME ERROR OCCURED...",value="""
-                        Either your `username` \nor your `password` \nor your `region` is incorrect.
-                        """,inline=False)
-        
-                        embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
-                        await message.channel.send(
-                            embed=embed,
-                        )
+                        print(e)                  
                 
                 
     
