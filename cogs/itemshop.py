@@ -29,8 +29,8 @@ class itemshop(commands.Cog):
                 msg = msg[1].embeds
                 for ms in msg:
                     ms = ms.to_dict()
-                    print(ms)
-                    print(ms["fields"]["name"])
+                print(ms)
+                print(ms["fields"]["name"])
                 
                     
                 if ms["fields"]["name"] == "Username": 
