@@ -32,7 +32,9 @@ class mmr(commands.Cog):
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
                     ctx.send(rank + str(mmr) + str(change))
-        
+            
+            except Exception as e:
+                print(e)
         else:
             username = message.content.split('#')
             name=username[0]
