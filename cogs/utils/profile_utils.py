@@ -103,6 +103,7 @@ async def loggedInStats(username, tagline):
     user = data["platformInfo"]["platformUserIdentifier"]
     avatarUrl = data["platformInfo"]["avatarUrl"]
     
+    stats = data["segments"][0]["stats"]
     rank = stats["rank"]["metadata"]["tierName"]
     rankIconUrl = stats["rank"]["metadata"]["iconUrl"]
     
