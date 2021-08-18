@@ -110,7 +110,15 @@ class itemshop(commands.Cog):
                     await message.channel.send(embed=dm_embed)
                     
                     try:
-                        raw_ingame_user = getingamename(user["region"], user["user_id"])
+                        
+                        user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
+                        username = user['username']
+                        password = user['password']
+                        region   = user['region']
+                        
+                        user_data = username_to_data(username, password)
+                        user_id = user_data[2]
+                        raw_ingame_user = getingamename(region, user_id)
 
                         ingame_username = raw_ingame_user['data']['name']
                         ingame_tag = raw_ingame_user['data']['tag']
