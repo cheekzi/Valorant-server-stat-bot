@@ -23,48 +23,6 @@ class itemshop(commands.Cog):
                 
                 author_id = str(message.author.id)
                 user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
-                    
-                msg = await message.channel.history(limit=2).flatten()
-                
-                msg = msg[1].embeds
-                for ms in msg:
-                    dic = ms.to_dict()
-                
-                    
-                if dic["fields"][0]["name"] == "Username": 
-                    if not user:
-                        await self.client.pg_con.execute("INSERT INTO riotpwd (user_id, username) VALUES ($1, $2)", author_id, message.content)
-
-                    else:
-                        await self.client.pg_con.execute("UPDATE riotpwd SET username = $1 WHERE user_id = $2",message.content, author_id)
-
-                    await message.channel.send("Successfully updated your username")  
-                    dm_embed = discord.Embed(
-                        color=discord.Color.red()
-                    )
-                    dm_embed.add_field(name ="Password",value="Enter your **Password** \n for example `123`",inline=False)
-                    await message.channel.send(embed=dm_embed)
-
-                elif dic["fields"][0]["name"] == "Password":
-                    await self.client.pg_con.execute("UPDATE riotpwd SET password = $1 WHERE user_id = $2",message.content, author_id)
-                    await message.channel.send("Successfully updated your password")
-
-                    dm_embed = discord.Embed(
-                        color=discord.Color.red()
-                    )
-                    dm_embed.add_field(name ="Region",value="Enter your **Region** \n for example `eu`",inline=False)
-                    await message.channel.send(embed=dm_embed)
-
-                elif dic["fields"][0]["name"] == "Region":
-                    await self.client.pg_con.execute("UPDATE riotpwd SET region = $1 WHERE user_id = $2",message.content, author_id)
-                    await message.channel.send("Successfully updated your region")
-
-                    dm_embed = discord.Embed(
-                        color=discord.Color.red()
-                    )
-                    dm_embed.add_field(name="Finished", value="If everything is correct try /shop , /profile , /rank and more.. \n Otherwise you can change any personal information with username=`your_username`, password=`your_password`, region=`your_region`.", inline=False)
-                    await message.channel.send(embed=dm_embed)
-                
                 
                 if message.content.startswith('username='):
                     username = message.content.split('=')
@@ -105,6 +63,50 @@ class itemshop(commands.Cog):
                         `latam` - Latin America
                     """,inline=False)
                     await message.channel.send(embed=embed)
+                    
+                msg = await message.channel.history(limit=2).flatten()
+                
+                msg = msg[1].embeds
+                for ms in msg:
+                    dic = ms.to_dict()
+                
+                if dic == None:
+                    return
+                if dic["fields"][0]["name"] == "Username": 
+                    if not user:
+                        await self.client.pg_con.execute("INSERT INTO riotpwd (user_id, username) VALUES ($1, $2)", author_id, message.content)
+
+                    else:
+                        await self.client.pg_con.execute("UPDATE riotpwd SET username = $1 WHERE user_id = $2",message.content, author_id)
+
+                    await message.channel.send("Successfully updated your username")  
+                    dm_embed = discord.Embed(
+                        color=discord.Color.red()
+                    )
+                    dm_embed.add_field(name ="Password",value="Enter your **Password** \n for example `123`",inline=False)
+                    await message.channel.send(embed=dm_embed)
+
+                elif dic["fields"][0]["name"] == "Password":
+                    await self.client.pg_con.execute("UPDATE riotpwd SET password = $1 WHERE user_id = $2",message.content, author_id)
+                    await message.channel.send("Successfully updated your password")
+
+                    dm_embed = discord.Embed(
+                        color=discord.Color.red()
+                    )
+                    dm_embed.add_field(name ="Region",value="Enter your **Region** \n for example `eu`",inline=False)
+                    await message.channel.send(embed=dm_embed)
+
+                elif dic["fields"][0]["name"] == "Region":
+                    await self.client.pg_con.execute("UPDATE riotpwd SET region = $1 WHERE user_id = $2",message.content, author_id)
+                    await message.channel.send("Successfully updated your region")
+
+                    dm_embed = discord.Embed(
+                        color=discord.Color.red()
+                    )
+                    dm_embed.add_field(name="Finished", value="If everything is correct try /shop , /profile , /rank and more.. \n Otherwise you can change any personal information with username=`your_username`, password=`your_password`, region=`your_region`.", inline=False)
+                    await message.channel.send(embed=dm_embed)
+                
+                
                 
     
     @commands.command()
