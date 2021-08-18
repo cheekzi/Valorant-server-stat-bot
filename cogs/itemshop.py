@@ -126,7 +126,7 @@ class itemshop(commands.Cog):
         next_embed = discord.Embed(
             color=discord.Color.red()
         )
-        next_embed.add_field(name ="Region",value="Enter your **Region** \n for example `eu`",inline=False)
+        next_embed.add_field(name ="Username",value="Enter your **Username** \n for example `cheekz`",inline=False)
         await ctx.author.send(embed=next_embed)
         
 
