@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 import json 
-from .utils.rank_utils import username_to_data,getMMRHistory
+from .utils.rank_utils import username_to_data,getMMRHistory, getMMRHistory_name
 from discord_components import *
 
 with open ('././config/config.json', 'r') as f:
