@@ -24,9 +24,9 @@ class itemshop(commands.Cog):
         if message.author != message.author.bot:
             if not message.guild:
                     
-                msg = await message.channel.history(limit=2).flatten().embeds
-                msg = msg[1]
-                message.channel.send(msg)
+                msg = await message.channel.history(limit=2).flatten()
+                for ms in msg:
+                    print(ms.content)
                     
                 if msg.author == message.author.bot:
                     if "username" in msg.content.lower(): 
