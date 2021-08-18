@@ -28,11 +28,11 @@ class itemshop(commands.Cog):
                 try:
                     msg = msg[1].embeds
                     for ms in msg:
-                        print(ms.to_dict())
+                        ms = ms.to_dict()
                 except:
                     print("Fehler")
-                if message.author == message.author.bot:
-                    if "username" in msg.content.lower(): 
+                if msg.author == message.author.bot:
+                    if ms['fields']['name'] == "Username": 
                         if not user:
                             await self.client.pg_con.execute("INSERT INTO riotpwd (user_id, username) VALUES ($1, $2)", author_id, username[1])
                             
