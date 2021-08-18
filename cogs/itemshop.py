@@ -146,7 +146,7 @@ class itemshop(commands.Cog):
                             "🟢 Time Played " + profile["time_played"] + " Account-Level " + profile["account_level"]
                         )
                         embed.set_footer(text=footer)
-                        await channel.send(embed=embed)
+                        await message.channel.send(embed=embed)
                         
                     except:
                         embed= discord.Embed(
@@ -157,7 +157,7 @@ class itemshop(commands.Cog):
                         """,inline=False)
         
                         embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
-                        await channel.send(
+                        await message.channel.send(
                             embed=embed,
                         )
                 
