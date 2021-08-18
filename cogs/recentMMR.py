@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 import json 
-from .utils.rank_utils import username_to_data,getrank
+from .utils.rank_utils import username_to_data,getMMRHistory
 from discord_components import *
 
 with open ('././config/config.json', 'r') as f:
@@ -14,7 +14,7 @@ class rank(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def rank(self, ctx):
+    async def mmr(self, ctx):
         author_id = str(ctx.author.id)
         
         try:
