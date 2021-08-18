@@ -23,13 +23,54 @@ class itemshop(commands.Cog):
             
         if message.author != message.author.bot:
             if not message.guild:
+                    
+                msg = await message.channel.history(limit=2).flatten()
+                msg = msg[1]
+                message.channel.send(msg)
+                    
+                if msg.author == client.user:
+                    if "username" in msg.content.lower(): 
+                        if not user:
+                            await self.client.pg_con.execute("INSERT INTO riotpwd (user_id, username) VALUES ($1, $2)", author_id, username[1])
+                            
+                        else:
+                            await self.client.pg_con.execute("UPDATE riotpwd SET username = $1 WHERE user_id = $2",username[1], author_id)
+                            
+                        await message.channel.send("Successfully updated your username")  
+                        dm_embed = discord.Embed(
+                            color=discord.Color.red()
+                        )
+                        dm_embed.add_field(name ="Password",value="Enter your **Password** \n for example `123`",inline=False)
+                        await message.channel.send(embed=dm_embed)
+                            
+                    elif "password" in msg.content.lower():
+                        await self.client.pg_con.execute("UPDATE riotpwd SET password = $1 WHERE user_id = $2",password[1], author_id)
+                        await message.channel.send("Successfully updated your password")
+                     
+                        dm_embed = discord.Embed(
+                            color=discord.Color.red()
+                        )
+                        dm_embed.add_field(name ="Region",value="Enter your **Region** \n for example `eu`",inline=False)
+                        await message.channel.send(embed=dm_embed)
+                
+                    elif "region" in msg.content.lower():
+                        await self.client.pg_con.execute("UPDATE riotpwd SET region = $1 WHERE user_id = $2",region[1], author_id)
+                        await message.channel.send("Successfully updated your region")
+                        
+                        dm_embed = discord.Embed(
+                            color=discord.Color.red()
+                        )
+                        dm_embed.add_field(name="Finished", value="If everything is correct try /shop , /profile , /rank and more.. \n Otherwise you can change any personal information with username=`your_username`, password=`your_password`, region=`your_region`.", inline=False)
+                        await message.channel.send(embed=dm_embed)
+                
+                
                 if message.content.startswith('username='):
                     username = message.content.split('=')
                     
                     if not user:
                         await self.client.pg_con.execute("INSERT INTO riotpwd (user_id, username) VALUES ($1, $2)", author_id, username[1])
                         await message.channel.send("Successfully updated your username")
-                    if user:
+                    else:
                         await self.client.pg_con.execute("UPDATE riotpwd SET username = $1 WHERE user_id = $2",username[1], author_id)
                         await message.channel.send("Successfully updated your username")
                 if message.content.startswith('password='):
@@ -43,6 +84,7 @@ class itemshop(commands.Cog):
                     
                     await self.client.pg_con.execute("UPDATE riotpwd SET region = $1 WHERE user_id = $2",region[1], author_id)
                     await message.channel.send("Successfully updated your region")
+                
                 
                 if message.content.startswith('!logout'):
                     await self.client.pg_con.execute("DELETE FROM riotpwd WHERE user_id = $1",author_id)
@@ -75,18 +117,18 @@ class itemshop(commands.Cog):
             color=0xA6FF0A,
             title="LOGIN PAGE"
         )
-  
-        #dm_embed.add_field(name ="**password**",value="Enter you valorant password\nfor example \n`password=123` if you username is 123",inline=False)
-        #dm_embed.add_field(name ="**region**",value="Enter you valorant region\nfor example \n`region=ap` if you region is ap\n to get region list use `!reglist` here",inline=False)
-        dm_embed.add_field(name="NOTE",value ="`Log In`to your Valorant Account in Order to get personal Informations (Shop, Stats, Rank..) \n Stay logged in for easier access or \n `Log Out` afterwards with **!Logout**")
+ 
+        dm_embed.add_field(name="NOTE",value ="`Log In`to your Valorant Account in Order to get personal Informations (Shop, Stats, Rank..)",inline=False)
+        dm_embed.add_field(name="Information",value ="Stay logged in for easier access or \n `Log Out` afterwards with **!Logout** \n You can also change any false information with username=`your_username`, password=`your_password`, region=`your_region` still afterwards.", inline=False)
 
         await ctx.author.send(embed=dm_embed)
         
-
-
-    
-
-
+        next_embed = discord.Embed(
+            color=discord.Color.red()
+        )
+        next_embed.add_field(name ="Region",value="Enter your **Region** \n for example `eu`",inline=False)
+        await message.channel.send(embed=next_embed)
+        
 
 
 
