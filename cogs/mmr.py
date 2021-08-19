@@ -57,6 +57,16 @@ class mmr(commands.Cog):
             
             except Exception as e:
                 print(e)
+                embed= discord.Embed(
+                    color=discord.Color.red()
+                )
+                embed.add_field(name ="SOME ERROR OCCURED...",value="""
+                Couldn't find statistics. \n You have to be `logged in`to use this command \n Otherwise try using **!mmr <name#tag>** to view anyone's statistics.
+                """,inline=False)
+                embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
+                await ctx.send(
+                    embed=embed
+                )
         else:
             print(name)
             username = name.split('#')
