@@ -17,7 +17,7 @@ class mmr(commands.Cog):
     async def mmr(self, ctx, *, name):
         author_id = str(ctx.author.id)
         
-        if not name:
+        if name == "":
             user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
             username = user['username']
             password = user['password']
@@ -60,11 +60,11 @@ class mmr(commands.Cog):
         else:
             print(name)
             username = name.split('#')
-            name=username[0]
             tag=username[1]
+            username = username[0]
             
             try:
-                mmrHistory = getMMRHistory_name(name, tag)
+                mmrHistory = getMMRHistory_name(username, tag)
                 for i in range(5):
                     rank = mmrHistory["data"][i]["currenttierpatched"]
                     raw_rank = mmrHistory["data"][i]["currenttier"]
@@ -94,20 +94,17 @@ class mmr(commands.Cog):
                     await ctx.send(embed=embed)
                        
             except Exception as e:
-                print(e)
-                logging
-                embed = discord.Embed(
-                    title=rank,
-                    color = colorx
-                )
-                embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
-                embed.add_field(name="Rank Rating",value=rr,inline=False)
-
-                footer = (
-                    "🟢 " + date
-                )
-                embed.set_footer(text=footer)
-                await ctx.send(embed=embed)
+                if e == "data":
+                    embed= discord.Embed(
+                        color=discord.Color.red()
+                    )
+                    embed.add_field(name ="SOME ERROR OCCURED...",value=f"""
+                    Couldn't find statistics for `{name}` \n Check if the name is correct and try again later.
+                    """,inline=False)
+                    embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
+                    await ctx.send(
+                        embed=embed
+                    )
 
 def setup(client):
     client.add_cog(mmr(client))
