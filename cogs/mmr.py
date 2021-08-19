@@ -14,10 +14,10 @@ class mmr(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def mmr(self, ctx, *, name):
+    async def mmr(self, ctx, *, name=None):
         author_id = str(ctx.author.id)
         
-        if name == "":
+        if not name:
             user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
             username = user['username']
             password = user['password']
