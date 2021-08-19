@@ -43,6 +43,7 @@ class mmr(commands.Cog):
                         
                     rr = f"**{mmr} / 100** RR            - **{change}**"
                         
+                    print(str(datetime.fromtimestamp(int(date))))
                     embed = discord.Embed(
                         title=rank,
                         color = colorx,
@@ -61,7 +62,6 @@ class mmr(commands.Cog):
             
             except Exception as e:
                 print(e)
-                logging
                 embed= discord.Embed(
                     color=discord.Color.red()
                 )
