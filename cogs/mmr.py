@@ -14,7 +14,7 @@ class mmr(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def mmr(self, ctx, name:str):
+    async def mmr(self, ctx, *, name):
         author_id = str(ctx.author.id)
         
         if not name:
