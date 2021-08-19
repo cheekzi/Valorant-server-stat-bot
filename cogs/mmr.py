@@ -43,21 +43,15 @@ class mmr(commands.Cog):
                         
                     rr = f"**{mmr} / 100** RR            - **{change}**"
                         
-                    print(str(datetime.fromtimestamp(int(date)//1000)))
                     embed = discord.Embed(
                         title=rank,
                         color = colorx,
-                        timestamp= datetime.fromtimestamp(int(date)//1000)
+                        timestamp= datetime.fromtimestamp(date//1000)
                     )
 
                     embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
 
-
-                    footer = (
-                        f"🟢 <t:{date}:F>"
-                    )
-                    embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
             
             except Exception as e:
@@ -98,16 +92,11 @@ class mmr(commands.Cog):
                     embed = discord.Embed(
                         title=rank,
                         color = colorx,
-                        timestamp= datetime.fromtimestamp(int(date)//1000)
+                        timestamp= datetime.fromtimestamp(date//1000)
                     )
                     embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
-                    embed.add_field(name="Rank Rating",value=f"🟢 <t:{date}:F>",inline=False)
 
-                    footer = (
-                        f"🟢 <t:{date}:F>"
-                    )
-                    embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
                        
             except Exception as e:
