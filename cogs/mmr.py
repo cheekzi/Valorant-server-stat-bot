@@ -44,11 +44,12 @@ class mmr(commands.Cog):
                         
                     embed = discord.Embed(
                         title=rank,
-                        color = colorx,
-                        timestamp= f"<t:{date}:F>"
+                        color = colorx
                     )
                     embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
+                    embed.add_field(name="Rank Rating",value=f"🟢 <t:{date}:F>",inline=False)
+
 
                     footer = (
                         f"🟢 <t:{date}:F>"
@@ -93,11 +94,11 @@ class mmr(commands.Cog):
                         
                     embed = discord.Embed(
                         title=rank,
-                        color = colorx,
-                        timestamp = f"<t:{date}:F>"
+                        color = colorx
                     )
                     embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
+                    embed.add_field(name="Rank Rating",value=f"🟢 <t:{date}:F>",inline=False)
 
                     footer = (
                         f"🟢 <t:{date}:F>"
