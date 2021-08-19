@@ -62,6 +62,7 @@ class mmr(commands.Cog):
             tag=username[1]
             
             try:
+                mmrHistory = getMMRHistory_name(name, tag)
                 for i in range(5):
                     rank = mmrHistory["data"][i]["currenttierpatched"]
                     raw_rank = mmrHistory["data"][i]["currenttier"]
