@@ -4,6 +4,7 @@ import requests
 import json 
 from .utils.rank_utils import username_to_data,getMMRHistory, getMMRHistory_name
 from discord_components import *
+from datetime import datetime
 
 with open ('././config/config.json', 'r') as f:
     config = json.load(f, strict=False)
@@ -44,11 +45,12 @@ class mmr(commands.Cog):
                         
                     embed = discord.Embed(
                         title=rank,
-                        color = colorx
+                        color = colorx,
+                        timestamp= datetime.fromtimestamp(date)
                     )
+
                     embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
-                    embed.add_field(name="Rank Rating",value=f"🟢 <t:{date}:F>",inline=False)
 
 
                     footer = (
@@ -94,7 +96,8 @@ class mmr(commands.Cog):
                         
                     embed = discord.Embed(
                         title=rank,
-                        color = colorx
+                        color = colorx,
+                        timestamp= datetime.fromtimestamp(date)
                     )
                     embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
