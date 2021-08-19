@@ -241,13 +241,7 @@ class itemshop(commands.Cog):
             """,inline=False)
             embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
             await ctx.send(
-                embed=embed,
-                components=[
-                    [
-                        Button(label="Support Server", style=5, url="https://discord.gg/m5mSyTV7RR"),
-                        Button(label="Vote", style=5, url="https://top.gg/bot/864451929346539530/vote")
-                    ]
-                ]
+                embed=embed
             )
 
 
