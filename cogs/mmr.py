@@ -32,7 +32,7 @@ class mmr(commands.Cog):
                     raw_rank = mmrHistory["data"][i]["currenttier"]
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
-                    date = mmrHistory["data"][i]["date"]
+                    date = mmrHistory["data"][i]["date_raw"]
                     
                     if change < 0:
                         colorx = discord.Color.red()
@@ -50,7 +50,7 @@ class mmr(commands.Cog):
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
 
                     footer = (
-                        "🟢 " + date
+                        f"🟢 <t:{date}:F>"
                     )
                     embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
@@ -80,7 +80,7 @@ class mmr(commands.Cog):
                     raw_rank = mmrHistory["data"][i]["currenttier"]
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
-                    date = mmrHistory["data"][i]["date"]
+                    date = mmrHistory["data"][i]["date_raw"]
                     
                     if change < 0:
                         colorx = discord.Color.red()
@@ -98,7 +98,7 @@ class mmr(commands.Cog):
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
 
                     footer = (
-                        "🟢 " + date
+                        f"🟢 <t:{date}:F>"
                     )
                     embed.set_footer(text=footer)
                     await ctx.send(embed=embed)
