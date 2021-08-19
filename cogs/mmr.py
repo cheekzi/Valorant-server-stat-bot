@@ -18,12 +18,12 @@ class mmr(commands.Cog):
         author_id = str(ctx.author.id)
         
         if not name:
-            user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
-            username = user['username']
-            password = user['password']
-            region   = user['region']
             
             try:
+                user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
+                username = user['username']
+                password = user['password']
+                region   = user['region']
                 user_data = username_to_data(username, password)
                 user_id = user_data[2]
                 mmrHistory = getMMRHistory(region, user_id)
