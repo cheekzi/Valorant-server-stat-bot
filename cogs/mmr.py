@@ -29,9 +29,30 @@ class mmr(commands.Cog):
                 mmrHistory = getMMRHistory(region, user_id)
                 for i in range(5):
                     rank = mmrHistory["data"][i]["currenttierpatched"]
+                    raw_rank = mmrHistory["data"][i]["currenttier"]
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
-                    await ctx.send(rank + str(mmr) + str(change))
+                    date = mmrHistory["data"][i]["date"]
+                    
+                    rr = f"**{mmr} / 100** RR             **{change}**"
+                    
+                    if change > 0:
+                        colorx = discord.Color.red()
+                    else:
+                        colorx = discord.Color.green()
+                        
+                    embed = discord.Embed(
+                        title=rank,
+                        color = colorx
+                    )
+                    embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
+                    embed.add_field(name="Rank Rating",value=rr,inline=False)
+
+                    footer = (
+                        "🟢 " + date
+                    )
+                    embed.set_footer(text=footer)
+                    await ctx.send(embed=embed)
             
             except Exception as e:
                 print(e)
@@ -41,12 +62,33 @@ class mmr(commands.Cog):
             tag=username[1]
             
             try:
-                mmrHistory = getMMRHistory_name(name, tag)
                 for i in range(5):
                     rank = mmrHistory["data"][i]["currenttierpatched"]
+                    raw_rank = mmrHistory["data"][i]["currenttier"]
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
-                    await ctx.send(rank + str(mmr) + str(change))           
+                    date = mmrHistory["data"][i]["date"]
+                    
+                    rr = f"**{mmr} / 100** RR             **{change}**"
+                    
+                    if change > 0:
+                        colorx = discord.Color.red()
+                    else:
+                        colorx = discord.Color.green()
+                        
+                    embed = discord.Embed(
+                        title=rank,
+                        color = colorx
+                    )
+                    embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
+                    embed.add_field(name="Rank Rating",value=rr,inline=False)
+
+                    footer = (
+                        "🟢 " + date
+                    )
+                    embed.set_footer(text=footer)
+                    await ctx.send(embed=embed)
+                       
             except Exception as e:
                 print(e)
 
