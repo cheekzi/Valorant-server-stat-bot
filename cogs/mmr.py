@@ -94,7 +94,8 @@ class mmr(commands.Cog):
                     await ctx.send(embed=embed)
                        
             except Exception as e:
-                if e == "data":
+                print(e)
+                if e == 'data':
                     embed= discord.Embed(
                         color=discord.Color.red()
                     )
