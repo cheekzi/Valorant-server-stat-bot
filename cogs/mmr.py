@@ -102,6 +102,11 @@ class mmr(commands.Cog):
                     embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
 
+                    footer = (
+                        "🟢 gespielt"
+                    )
+                    embed.set_footer(text=footer)
+                    
                     await ctx.send(embed=embed)
                        
             except Exception as e:
