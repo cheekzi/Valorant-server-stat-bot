@@ -34,12 +34,13 @@ class mmr(commands.Cog):
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
                     date = mmrHistory["data"][i]["date"]
                     
-                    rr = f"**{mmr} / 100** RR             **{change}**"
-                    
-                    if change > 0:
+                    if change < 0:
                         colorx = discord.Color.red()
                     else:
                         colorx = discord.Color.green()
+                        change = f"+{change}"
+                        
+                    rr = f"**{mmr} / 100** RR            - **{change}**"
                         
                     embed = discord.Embed(
                         title=rank,
@@ -57,6 +58,7 @@ class mmr(commands.Cog):
             except Exception as e:
                 print(e)
         else:
+            print(name)
             username = name.split('#')
             name=username[0]
             tag=username[1]
