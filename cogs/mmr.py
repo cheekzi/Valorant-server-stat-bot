@@ -53,7 +53,7 @@ class mmr(commands.Cog):
                     embed.add_field(name="Rank Rating",value=rr,inline=False)
                     
                     footer = (
-                        "🕗🟢 gespielt"
+                        "🟢 gespielt"
                     )
                     embed.set_footer(text=footer)
 
