@@ -47,7 +47,7 @@ class mmr(commands.Cog):
                     embed = discord.Embed(
                         title=rank,
                         color = colorx,
-                        timestamp= datetime.fromtimestamp(int(date)//1000)
+                        timestamp= datetime.fromtimestamp(int(int(date)//1000))
                     )
 
                     embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
