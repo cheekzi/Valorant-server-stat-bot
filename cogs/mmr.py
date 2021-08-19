@@ -31,7 +31,7 @@ class mmr(commands.Cog):
                     rank = mmrHistory["data"][i]["currenttierpatched"]
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
-                    ctx.send(rank + str(mmr) + str(change))
+                    await ctx.send(rank + str(mmr) + str(change))
             
             except Exception as e:
                 print(e)
@@ -46,7 +46,7 @@ class mmr(commands.Cog):
                     rank = mmrHistory["data"][i]["currenttierpatched"]
                     mmr = mmrHistory["data"][i]["ranking_in_tier"]
                     change = mmrHistory["data"][i]["mmr_change_to_last_game"]
-                    ctx.send(rank + str(mmr) + str(change))           
+                    await ctx.send(rank + str(mmr) + str(change))           
             except Exception as e:
                 print(e)
 
