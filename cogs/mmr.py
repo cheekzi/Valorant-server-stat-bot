@@ -95,7 +95,7 @@ class mmr(commands.Cog):
                        
             except Exception as e:
                 print(e)
-                if e == "'data'":
+                if str(e) == "'data'":
                     embed= discord.Embed(
                         color=discord.Color.red()
                     )
