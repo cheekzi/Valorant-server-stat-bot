@@ -95,6 +95,19 @@ class mmr(commands.Cog):
                        
             except Exception as e:
                 print(e)
+                logging
+                embed = discord.Embed(
+                    title=rank,
+                    color = colorx
+                )
+                embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{raw_rank}.png")
+                embed.add_field(name="Rank Rating",value=rr,inline=False)
+
+                footer = (
+                    "🟢 " + date
+                )
+                embed.set_footer(text=footer)
+                await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(mmr(client))
