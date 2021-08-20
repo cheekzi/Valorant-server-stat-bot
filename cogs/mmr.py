@@ -111,17 +111,16 @@ class mmr(commands.Cog):
                        
             except Exception as e:
                 print(e)
-                if str(e) == "'data'":
-                    embed= discord.Embed(
-                        color=discord.Color.red()
-                    )
-                    embed.add_field(name ="SOME ERROR OCCURED...",value=f"""
-                    Couldn't find statistics for `{name}` \n Check if the name is correct and try again later.
-                    """,inline=False)
-                    embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
-                    await ctx.send(
-                        embed=embed
-                    )
+                embed= discord.Embed(
+                    color=discord.Color.red()
+                )
+                embed.add_field(name ="SOME ERROR OCCURED...",value=f"""
+                Couldn't find statistics for `{name}` \n Check if the name is correct and try again later.
+                """,inline=False)
+                embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
+                await ctx.send(
+                    embed=embed
+                )
 
 def setup(client):
     client.add_cog(mmr(client))
