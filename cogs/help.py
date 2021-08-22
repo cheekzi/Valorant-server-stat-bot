@@ -29,6 +29,7 @@ class help(commands.Cog):
             description=f"""
             **GENERAL**
             :small_blue_diamond: `{prefix}skin` - shows info regarding skins
+            :small_blue_diamond: `{prefix}mmr <name#tag>` - shows info regarding recent mmr-history
 
             **PLAYER STAT**
             :small_blue_diamond: `{prefix}login` - login to you valorant account
