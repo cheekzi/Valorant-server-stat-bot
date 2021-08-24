@@ -43,9 +43,7 @@ def getrank(region, user_id):
     return whole_data
 
 def getrank_name(name, tag):
-    req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v1/mmr/eu/{name}/{tag}")
-    whole_data = req_data.json()
-    return whole_data
+    return requests.get(f"https://api.henrikdev.xyz/valorant/v1/mmr/eu/{name}/{tag}").json()
 
 def getMMRHistory(region, user_id):
     req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/{region}/{user_id}")
