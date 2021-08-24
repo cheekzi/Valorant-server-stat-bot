@@ -38,19 +38,13 @@ def username_to_data(username, password):
 
 
 def getrank(region, user_id):
-    req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/{region}/{user_id}") 
-    whole_data = req_data.json()
-    return whole_data
+    return requests.get(f"https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/{region}/{user_id}").json()
 
 def getrank_name(name, tag):
     return requests.get(f"https://api.henrikdev.xyz/valorant/v1/mmr/eu/{name}/{tag}").json()
 
 def getMMRHistory(region, user_id):
-    req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/{region}/{user_id}")
-    whole_data = req_data.json()  
-    return whole_data
+    return requests.get(f"https://api.henrikdev.xyz/valorant/v1/by-puuid/mmr-history/{region}/{user_id}").json()
 
 def getMMRHistory_name(name, tag):
-    req_data = requests.get(f"https://api.henrikdev.xyz/valorant/v1/mmr-history/eu/{name}/{tag}")
-    whole_data = req_data.json()
-    return whole_data
+    return requests.get(f"https://api.henrikdev.xyz/valorant/v1/mmr-history/eu/{name}/{tag}").json()
