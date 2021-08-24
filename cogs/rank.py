@@ -103,7 +103,7 @@ class rank(commands.Cog):
                     color=discord.Color.red()
                 )
                 embed.add_field(name ="SOME ERROR OCCURED...",value=f"""
-                Couldn't find statistics for `{name}` \n Check if the name is correct and try again later.
+                Couldn't find statistics for `{name}` \n Check if the name is correct and the player had played rank before this season and try again later.
                 """,inline=False)
                 embed.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")
                 await ctx.send(
