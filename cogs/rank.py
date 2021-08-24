@@ -42,8 +42,8 @@ class rank(commands.Cog):
                             title="RANK"
                         )
                         embed.add_field(name ="Current Rank",value=f"{player_rank}",inline=False)
-                        embed.add_field(name ="Ranking in Tier",value=f"{ranking_in_tier}",true)
-                        embed.add_field(name ="Last Game MMR Change",value=f"{mmr_change_to_last_game}",true)
+                        embed.add_field(name ="Ranking in Tier",value=f"{ranking_in_tier}",inline=True)
+                        embed.add_field(name ="Last Game MMR Change",value=f"{mmr_change_to_last_game}",inline=True)
                         embed.add_field(name ="Games needed for rating",value=f"{games_needed_for_rating}",inline=False)
                         embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{current_tier}.png")
 
@@ -93,8 +93,8 @@ class rank(commands.Cog):
                     title="RANK"
                 )
                 embed.add_field(name ="Current Rank",value=f"{player_rank}",inline=False)
-                embed.add_field(name ="Ranking in Tier",value=f"{ranking_in_tier}",true)
-                embed.add_field(name ="Last Game MMR Change",value=f"{mmr_change_to_last_game}",true)
+                embed.add_field(name ="Ranking in Tier",value=f"{ranking_in_tier}",inline=True)
+                embed.add_field(name ="Last Game MMR Change",value=f"{mmr_change_to_last_game}",inline=True)
                 embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{current_tier}.png")
 
                 await ctx.send(embed=embed)
