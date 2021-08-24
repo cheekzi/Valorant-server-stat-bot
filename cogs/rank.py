@@ -16,14 +16,13 @@ class rank(commands.Cog):
     @commands.command()
     async def rank(self, ctx, *, name=None):
         author_id = str(ctx.author.id)
-        
-        try:
-            user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
-            username = user['username']
-            password = user['password']
-            region   = user['region']
             
-            if not name:
+        if not name:
+            try:
+                user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
+                username = user['username']
+                password = user['password']
+                region   = user['region']
                 try: 
                     if user:
                         await ctx.send("Loading rank...")
