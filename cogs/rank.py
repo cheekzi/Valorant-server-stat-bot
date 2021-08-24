@@ -82,11 +82,11 @@ class rank(commands.Cog):
                 username = name.split('#')           
                 current_rank = getrank_name(username[0], username[1])
                 
-                player_rank = current_rank['data']['current_data']['currenttierpatched']
-                current_tier = current_rank['data']['current_data']['currenttier']
-                ranking_in_tier = current_rank['data']['current_data']['ranking_in_tier']
-                mmr_change_to_last_game = current_rank['data']['current_data']['mmr_change_to_last_game']
-                games_needed_for_rating = current_rank['data']['current_data']['games_needed_for_rating']
+                player_rank = current_rank['data']['currenttierpatched']
+                current_tier = current_rank['data']['currenttier']
+                ranking_in_tier = current_rank['data']['ranking_in_tier']
+                mmr_change_to_last_game = current_rank['data']['mmr_change_to_last_game']
+                games_needed_for_rating = current_rank['data']['games_needed_for_rating']
 
                 embed = discord.Embed(
                     color=0xFF9B0A,
