@@ -86,7 +86,6 @@ class rank(commands.Cog):
                 current_tier = current_rank['data']['currenttier']
                 ranking_in_tier = current_rank['data']['ranking_in_tier']
                 mmr_change_to_last_game = current_rank['data']['mmr_change_to_last_game']
-                games_needed_for_rating = current_rank['data']['games_needed_for_rating']
 
                 embed = discord.Embed(
                     color=0xFF9B0A,
@@ -94,7 +93,6 @@ class rank(commands.Cog):
                 )
                 embed.add_field(name ="Current Rank",value=f"{player_rank}",inline=False)
                 embed.add_field(name ="Ranking in Tier",value=f"{ranking_in_tier}",inline=False)
-                embed.add_field(name ="Games needed for rating",value=f"{games_needed_for_rating}",inline=False)
                 embed.set_thumbnail(url=f"https://raw.githubusercontent.com/typhonshambo/Valorant-server-stat-bot/main/assets/valorantRankImg/{current_tier}.png")
 
                 await ctx.send(embed=embed)
