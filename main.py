@@ -63,4 +63,4 @@ elif os.environ['HEROKU_PLAT'] == 2 and current_date >= 25:
     bot.loop.run_until_complete(create_db_pool())
     bot.run(os.environ['DISCORD_TOKEN'])
 else:
-    print("nicht aktiv " + current_date)
+    print("nicht aktiv " + current_date + os.environ['HEROKU_PLAT'])
