@@ -56,12 +56,10 @@ if __name__ == "__main__":
             traceback.print_exc()
 
 current_date = date.today().strftime("%d")
-if os.environ['HEROKU_PLAT'] == 1 and current_date < 25:
-    print("menn")
+if int(os.environ['HEROKU_PLAT']) == 1 and current_date < 25:
     bot.loop.run_until_complete(create_db_pool())
     bot.run(os.environ['DISCORD_TOKEN'])
-elif int(os.environ['HEROKU_PLAT']) == 2 and int(current_date) >= 25:
-    print("moin")
+elif int(os.environ['HEROKU_PLAT']) == 2 and current_date >= 25:
     bot.loop.run_until_complete(create_db_pool())
     bot.run(os.environ['DISCORD_TOKEN'])
 else:
