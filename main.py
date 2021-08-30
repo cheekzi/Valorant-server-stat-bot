@@ -6,6 +6,7 @@ import os
 import json 
 import requests
 from discord_components import *
+from datetime import date
 
 #for database
 import asyncpg
@@ -54,5 +55,11 @@ if __name__ == "__main__":
             print(f'Error loading {extension}', file=sys.stderr)
             traceback.print_exc()
 
-bot.loop.run_until_complete(create_db_pool())
-bot.run(os.environ['DISCORD_TOKEN'])
+current_date = date.today().strftime("%d")
+if os.environ['HEROKU_PLAT'] == 1 and current_date < 25:
+    bot.loop.run_until_complete(create_db_pool())
+    bot.run(os.environ['DISCORD_TOKEN'])
+else:
+    print(current_date)
+    bot.loop.run_until_complete(create_db_pool())
+    bot.run(os.environ['DISCORD_TOKEN'])
