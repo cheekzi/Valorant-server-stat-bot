@@ -59,7 +59,8 @@ current_date = date.today().strftime("%d")
 if os.environ['HEROKU_PLAT'] == 1 and current_date < 25:
     bot.loop.run_until_complete(create_db_pool())
     bot.run(os.environ['DISCORD_TOKEN'])
-else:
-    print(current_date)
+else if os.environ['HEROKU_PLAT'] == 2 and current_date >= 25:
     bot.loop.run_until_complete(create_db_pool())
     bot.run(os.environ['DISCORD_TOKEN'])
+else:
+    print("nicht aktiv " + current_date)
