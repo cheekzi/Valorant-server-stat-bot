@@ -10,6 +10,7 @@ from matplotlib.collections import LineCollection
 import numpy as np
 import os
 import math
+import io
 
 with open ('././config/config.json', 'r') as f:
     config = json.load(f, strict=False)
