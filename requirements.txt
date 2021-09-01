@@ -4,3 +4,4 @@ discord_components==1.1.4
 asyncpg
 matplotlib==3.2.0
 numpy==1.19.4
+aiohttp==3.6.3
