@@ -164,6 +164,7 @@ class graph(commands.Cog):
                        
             except Exception as e:
                 print(e)
+                e
                 embed= discord.Embed(
                     color=discord.Color.red()
                 )
