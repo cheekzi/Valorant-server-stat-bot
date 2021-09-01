@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 import json 
-import utils.graph_utils as val 
+from .utils.graph_utils import * 
 from discord_components import *
 from datetime import datetime
 import matplotlib.pyplot as plt
@@ -112,9 +112,9 @@ class graph(commands.Cog):
 
                 
     async def get_graph(username, password):
-        player_id, headers = val.run(username, password)
+        player_id, headers = run(username, password)
 
-        match_data = await val.parse_stats(player_id, headers, 20)
+        match_data = await parse_stats(player_id, headers, 20)
         matches = list(match_data.values())
         ranked_rating = []
         competitive_tier = []
