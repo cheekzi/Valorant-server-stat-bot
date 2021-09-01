@@ -14,10 +14,10 @@ with open ('././config/config.json', 'r') as f:
     config = json.load(f, strict=False)
     prefix = config['prefix']
     
-async def get_graph(username, password):
-    player_id, headers = await runAPI(username, password)
+async def get_graph(username, password, name, tag):
+    _, headers = await runAPI(username, password)
 
-    match_data = await parse_stats(player_id, headers, 20)
+    match_data = await parse_stats(name, tag, headers, 20)
     matches = list(match_data.values())
     ranked_rating = []
     competitive_tier = []
@@ -147,7 +147,7 @@ class graph(commands.Cog):
             username = username[0]
             
             try:
-                image = await get_graph(os.environ['USERNAME'], os.environ['PASSWORD'])      
+                image = await get_graph(os.environ['USERNAME'], os.environ['PASSWORD'], username, tag)      
                 embed = discord.Embed(
                     title="Test",
                     color = discord.Color.blue()
