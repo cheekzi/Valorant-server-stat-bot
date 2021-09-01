@@ -4,7 +4,7 @@ import aiohttp
 import asyncio
 import json
 
-async def run(username, password):
+async def runAPI(username, password):
     async with aiohttp.ClientSession() as session:
         data = {
             "client_id": "play-valorant-web-prod",
