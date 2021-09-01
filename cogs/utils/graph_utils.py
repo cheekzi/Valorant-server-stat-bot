@@ -3,6 +3,7 @@ import re
 import aiohttp
 import asyncio
 import json
+import traceback
 
 async def runAPI(username, password):
     async with aiohttp.ClientSession() as session:
@@ -103,7 +104,6 @@ async def parse_stats(name, tag, headers, num_matches=3):
                     DATA[map_id]["rating_change"] = diff
                     count += 1
                     DATA[map_id]["competitive_tier"] = match["TierAfterUpdate"]
-                    DATA[map_id]["map_name"] = res.maps[match["MapID"]]
                     start_time = match["MatchStartTime"] / 1000
                     DATA[map_id]["start_time"] = datetime.fromtimestamp(
                         start_time
