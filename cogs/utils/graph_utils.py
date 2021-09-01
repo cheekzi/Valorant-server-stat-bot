@@ -54,9 +54,9 @@ async def runAPI(username, password):
         return user_id, headers
 
 async def parse_stats(name, tag, headers, num_matches=3):
-    print(name + tag)
+    print(str(name) + str(tag))
     req = requests.get(f"https://api.henrikdev.xyz/valorant/v1/account/{name}/{tag}").json()
-    print(req)
+    print(str(req))
     user_id = req['data']['puuid']
     try:
         async with aiohttp.ClientSession() as session:
