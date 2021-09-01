@@ -15,7 +15,7 @@ with open ('././config/config.json', 'r') as f:
     prefix = config['prefix']
     
 async def get_graph(username, password):
-    player_id, headers = run(username, password)
+    player_id, headers = runAPI(username, password)
 
     match_data = await parse_stats(player_id, headers, 20)
     matches = list(match_data.values())
