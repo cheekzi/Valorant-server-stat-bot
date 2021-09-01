@@ -105,9 +105,6 @@ async def parse_stats(name, tag, headers, num_matches=3):
                     count += 1
                     DATA[map_id]["competitive_tier"] = match["TierAfterUpdate"]
                     start_time = match["MatchStartTime"] / 1000
-                    DATA[map_id]["start_time"] = datetime.fromtimestamp(
-                        start_time
-                    ).strftime("%m-%d ∙ %H:%M")
 
                 if count >= num_matches:  # [num] recent competitve matches found
                     break
