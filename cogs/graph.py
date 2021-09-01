@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 import json 
-from utils.graph_utils as val 
+import utils.graph_utils as val 
 from discord_components import *
 from datetime import datetime
 import matplotlib.pyplot as plt
