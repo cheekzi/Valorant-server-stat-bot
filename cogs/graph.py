@@ -13,6 +13,71 @@ import os
 with open ('././config/config.json', 'r') as f:
     config = json.load(f, strict=False)
     prefix = config['prefix']
+    
+async def get_graph(username, password):
+    player_id, headers = run(username, password)
+
+    match_data = await parse_stats(player_id, headers, 20)
+    matches = list(match_data.values())
+    ranked_rating = []
+    competitive_tier = []
+
+    for match in matches:
+        ranked_rating.append(match["ranked_rating"])
+        competitive_tier.append(match["competitive_tier"])
+
+    TRR = list(
+        reversed(
+            [
+                (tier * 100) - 300 + RR
+                for RR, tier in zip(ranked_rating, competitive_tier)
+            ]
+        )
+    )
+
+    x = np.arange(len(TRR))
+    y = np.array(TRR)
+
+    segments_x = np.r_[x[0], x[1:-1].repeat(2), x[-1]].reshape(-1, 2)
+    segments_y = np.r_[y[0], y[1:-1].repeat(2), y[-1]].reshape(-1, 2)
+
+    # Assign colors to the line segments
+    linecolors = ["green" if y_[0] < y_[1] else "red" for y_ in segments_y]
+
+    segments = [list(zip(x_, y_)) for x_, y_ in zip(segments_x, segments_y)]
+    min_ = int(math.floor(min(TRR) / 100.0)) * 100
+    max_ = int(math.ceil(max(TRR) / 100.0)) * 100
+    # Create figure
+    plt.figure(figsize=(12, 5), dpi=150)
+    plt.style.use("dark_background")
+    ax = plt.axes()
+
+    # Add a collection of lines
+    ax.add_collection(LineCollection(segments, colors=linecolors))
+    ax.scatter(x, y, c=[linecolors[0]] + linecolors, zorder=10)
+    ax.set_xlim(0, len(x) - 1)
+    ax.set_ylim(min_, max_)
+
+    ax.xaxis.grid(linestyle="dashed")
+    ax.yaxis.grid(linestyle="dashed")
+    ax.spines["top"].set_linestyle("dashed")
+    ax.spines["bottom"].set_capstyle("butt")
+    ax.spines["right"].set_linestyle("dashed")
+    ax.spines["bottom"].set_capstyle("butt")
+    plt.xlabel("Past Matches")
+    plt.ylabel("Rank Rating (RR)")
+    plt.title("Rank Rating History")
+    plt.xticks(np.arange(len(x)), labels=x[::-1])
+    plt.yticks(np.arange(min_, max_, 100))
+    plt.tight_layout()
+    plt.savefig("graph.png", transparent=True)
+    plt.close()
+
+    with open("graph.png", "rb") as f:
+        file = io.BytesIO(f.read())
+    image = discord.File(file, filename="graph.png")
+
+    return image
 
 class graph(commands.Cog):
     def __init__(self, client):
@@ -109,72 +174,6 @@ class graph(commands.Cog):
                 await ctx.send(
                     embed=embed
                 )
-
-                
-    async def get_graph(username, password):
-        player_id, headers = run(username, password)
-
-        match_data = await parse_stats(player_id, headers, 20)
-        matches = list(match_data.values())
-        ranked_rating = []
-        competitive_tier = []
-
-        for match in matches:
-            ranked_rating.append(match["ranked_rating"])
-            competitive_tier.append(match["competitive_tier"])
-
-        TRR = list(
-            reversed(
-                [
-                    (tier * 100) - 300 + RR
-                    for RR, tier in zip(ranked_rating, competitive_tier)
-                ]
-            )
-        )
-
-        x = np.arange(len(TRR))
-        y = np.array(TRR)
-
-        segments_x = np.r_[x[0], x[1:-1].repeat(2), x[-1]].reshape(-1, 2)
-        segments_y = np.r_[y[0], y[1:-1].repeat(2), y[-1]].reshape(-1, 2)
-
-        # Assign colors to the line segments
-        linecolors = ["green" if y_[0] < y_[1] else "red" for y_ in segments_y]
-
-        segments = [list(zip(x_, y_)) for x_, y_ in zip(segments_x, segments_y)]
-        min_ = int(math.floor(min(TRR) / 100.0)) * 100
-        max_ = int(math.ceil(max(TRR) / 100.0)) * 100
-        # Create figure
-        plt.figure(figsize=(12, 5), dpi=150)
-        plt.style.use("dark_background")
-        ax = plt.axes()
-
-        # Add a collection of lines
-        ax.add_collection(LineCollection(segments, colors=linecolors))
-        ax.scatter(x, y, c=[linecolors[0]] + linecolors, zorder=10)
-        ax.set_xlim(0, len(x) - 1)
-        ax.set_ylim(min_, max_)
-
-        ax.xaxis.grid(linestyle="dashed")
-        ax.yaxis.grid(linestyle="dashed")
-        ax.spines["top"].set_linestyle("dashed")
-        ax.spines["bottom"].set_capstyle("butt")
-        ax.spines["right"].set_linestyle("dashed")
-        ax.spines["bottom"].set_capstyle("butt")
-        plt.xlabel("Past Matches")
-        plt.ylabel("Rank Rating (RR)")
-        plt.title("Rank Rating History")
-        plt.xticks(np.arange(len(x)), labels=x[::-1])
-        plt.yticks(np.arange(min_, max_, 100))
-        plt.tight_layout()
-        plt.savefig("graph.png", transparent=True)
-        plt.close()
-
-        with open("graph.png", "rb") as f:
-            file = io.BytesIO(f.read())
-        image = discord.File(file, filename="graph.png")
-
-        return image
 
     
     
