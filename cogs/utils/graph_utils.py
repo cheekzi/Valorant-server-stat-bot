@@ -93,7 +93,7 @@ async def parse_stats(name, tag, headers, num_matches=3):
             print(str(matches))
             
             async with session.get(
-                f"https://pd.eu.a.pvp.net/match-history/v1/history/{user_id}",
+                f"https://pd.eu.a.pvp.net/match-history/v1/history/{user_id}?startIndex=0&endIndex=20",
                 headers=headers,
             ) as r:
                 data = json.loads(await r.text())
