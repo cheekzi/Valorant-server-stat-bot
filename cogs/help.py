@@ -62,7 +62,6 @@ class help(commands.Cog):
         that you would like to see.
         To see list of guns use `{prefix}gunl`
         """, inline=False)
-        invite_help.add_field(name = "Join support server!", value="[support server](https://discord.com/invite/tygamers) | [github](https://github.com/typhonshambo/Valorant-server-stat-bot)")  
         invite_help.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")   
         await ctx.send(embed=invite_help)
 
@@ -76,14 +75,13 @@ class help(commands.Cog):
 
         invite_help.add_field(name ="USAGE", value =f"""
         It will login into your valorant account,
-        so that you can access shop using `{prefix}shop` in discord
+        so that you can access more data like the shop using `{prefix}shop` in discord
 
         **NOTE**
         The developers and the staff of this bot 
         do not have access to you valorant credentials
         they are all ENCRYPTED, so no need to worry :)
         """, inline=False)
-        invite_help.add_field(name = "Join support server!", value="[support server](https://discord.com/invite/tygamers) | [github](https://github.com/typhonshambo/Valorant-server-stat-bot)")  
         invite_help.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")   
         await ctx.send(embed=invite_help)
 
@@ -103,7 +101,6 @@ class help(commands.Cog):
         before you can use this command.
         use `{prefix}login` to login to your valorant account
         """, inline=False)
-        invite_help.add_field(name = "Join support server!", value="[support server](https://discord.com/invite/tygamers) | [github](https://github.com/typhonshambo/Valorant-server-stat-bot)")  
         invite_help.set_thumbnail(url="https://i.imgur.com/A45DVhf.gif")   
         await ctx.send(embed=invite_help)
 
