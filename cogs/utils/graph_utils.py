@@ -82,7 +82,7 @@ async def parse_stats(name, tag, headers, num_matches=3):
             matches.extend(data["Matches"])
             
             async with session.get(
-                f"https://pd.eu.a.pvp.net/mmr/v1/players/{user_id}/competitiveupdates?startIndex=21&endIndex=50",
+                f"https://pd.eu.a.pvp.net/mmr/v1/players/{user_id}/competitiveupdates?startIndex=21&endIndex=30",
                 headers=headers,
             ) as r:
                 data = json.loads(await r.text())
