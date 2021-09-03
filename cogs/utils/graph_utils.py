@@ -78,7 +78,8 @@ async def parse_stats(name, tag, headers, num_matches=3):
                 headers=headers,
             ) as r:
                 data = json.loads(await r.text())
-
+            
+            print(str(data["Matches"]))
             matches.extend(data["Matches"])
             
             async with session.get(
@@ -86,7 +87,8 @@ async def parse_stats(name, tag, headers, num_matches=3):
                 headers=headers,
             ) as r:
                 data = json.loads(await r.text())
-              
+             
+            print("Daten" + str(data["Matches"]))
             matches.extend(data["Matches"])
             print(str(matches))
 
