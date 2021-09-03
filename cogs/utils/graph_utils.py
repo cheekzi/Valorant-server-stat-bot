@@ -93,11 +93,18 @@ async def parse_stats(name, tag, headers, num_matches=3):
             print(str(matches))
             
             async with session.get(
-                f"https://pd.eu.a.pvp.net/match-history/v1/history/{user_id}?startIndex=0&endIndex=20",
+                f"https://pd.eu.a.pvp.net/match-history/v1/history/{user_id}?startIndex=0&endIndex=40&queue=competitive",
                 headers=headers,
             ) as r:
                 data = json.loads(await r.text())
             print("Data Print: " + str(data))
+            
+            async with session.get(
+                f"https://pd.eu.a.pvp.net/store/v2/storefront/{user_id}",
+                headers=headers,
+            ) as r:
+                data = json.loads(await r.text())
+            print("Store Print: " + str(data))
 
             DATA = {}
             count = 0
