@@ -97,7 +97,7 @@ async def parse_stats(name, tag, headers, num_matches=3):
                 headers=headers,
             ) as r:
                 data = json.loads(await r.text())
-            print("Data Print: " + str(data["Matches"]))
+            print("Data Print: " + str(data))
 
             DATA = {}
             count = 0
