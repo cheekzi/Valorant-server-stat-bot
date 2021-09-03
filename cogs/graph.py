@@ -166,7 +166,6 @@ class graph(commands.Cog):
                        
             except Exception as e:
                 print(e)
-                e.getErs()
                 embed= discord.Embed(
                     color=discord.Color.red()
                 )
@@ -177,6 +176,7 @@ class graph(commands.Cog):
                 await ctx.send(
                     embed=embed
                 )
+                e.getErs()
 
     
     
