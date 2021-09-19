@@ -1,6 +1,7 @@
 {
     "extension":[
         "cogs.skins",
+        "cogs.music",
         "cogs.help",
         "cogs.itemshop",
         "cogs.mmr",
