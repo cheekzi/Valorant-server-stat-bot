@@ -10,7 +10,7 @@ with open ('././config/config.json', 'r') as f:
   prefix = config['prefix']
 
 
-+class music(commands.Cog):
+class music(commands.Cog):
   def __init__(self, client):
     self.client = client
 
