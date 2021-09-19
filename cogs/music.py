@@ -43,6 +43,12 @@ class music(commands.Cog):
     player = self.bot.wavelink.get_player(ctx.guild.id)
     await ctx.send(f'Connecting to **`{channel.name}`**')
     await player.connect(channel.id)
+    
+  @commands.command(aliases['d'])
+  async def disconnect(self, ctx):
+    player = self.bot.wavelink.get_player(ctx.guild.id)
+    await ctx.send(f'Disconnecting from **`{self.voice.channel.name}`**')
+    await player.disconnect()
 
   @commands.command()
   async def play(self, ctx, *, query: str):
