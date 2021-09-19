@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import json
 from discord_components import *
-import youtube_dl
 import wavelink
 from discord.ext.commands.errors import MissingRequiredArgument
 
