@@ -16,7 +16,7 @@ class music(commands.Cog):
 
 
   @commands.command(aliases=['pl'])
-  async def play(self, ctx):
+  async def play(self, ctx, url):
     if ctx.author.voice is None:
       await ctx.send("You're not in a voice channel!")
     voice_channel = ctx.author.voice.channel
