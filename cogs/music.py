@@ -29,7 +29,7 @@ class music(commands.Cog):
     with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
       info = ydl.extract_info(url, download=False)
       url2 = info['formats'][0]['url']
-      source = await dicord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
+      source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
       ctx.voice_client.play(source)
     
   @commands.command(aliases=['d'])
