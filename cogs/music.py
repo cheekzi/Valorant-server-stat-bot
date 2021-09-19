@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 from discord_components import *
 import youtube_dl
+from discord.ext.commands.errors import MissingRequiredArgument
 
 with open ('././config/config.json', 'r') as f:
   config = json.load(f, strict=False)
