@@ -27,7 +27,7 @@ class music(commands.Cog):
     YDL_OPTIONS = {
       'format': 'bestaudio/best',
       'noplaylist':'True',
-      'outtmpl': 'song.%(ext)s'
+      'outtmpl': 'song.%(ext)s',
       'postprocessors': [{
           'key': 'FFmpegExtractAudio',
           'preferredcodec': 'mp3',
