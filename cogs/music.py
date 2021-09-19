@@ -48,8 +48,7 @@ class music(commands.Cog):
   async def disconnect(self, ctx):
     player = self.bot.wavelink.get_player(ctx.guild.id)
     await ctx.send('**Disconnected**')
-    #await player.disconnect()
-    await ctx.voice_client.disconnect()
+    await player.disconnect()
 
   @commands.command()
   async def play(self, ctx, *, query: str):
