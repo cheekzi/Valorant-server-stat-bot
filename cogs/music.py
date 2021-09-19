@@ -37,11 +37,11 @@ class music(commands.Cog):
                                   
     @commands.command(aliases=['p'])
     async def pause(self,ctx):
-      awit ctx.voice_client.pause()
+      await ctx.voice_client.pause()
     
     @commands.command(aliases=['r'])
     async def resume(self,ctx):
-      awit ctx.voice_client.resume()
+      await ctx.voice_client.resume()
 
 def setup(client):
 	client.add_cog(music(client))
