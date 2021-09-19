@@ -28,7 +28,8 @@ class music(commands.Cog):
     await self.bot.wavelink.initiate_node(id='Main',
     host='lavalink.darrennathanael.com',
     port=2095,
-    pass='whatwasthelastingyousaid')
+    password='whatwasthelastingyousaid',
+    region='europe')
 
     
   @commands.command(name='connect')
