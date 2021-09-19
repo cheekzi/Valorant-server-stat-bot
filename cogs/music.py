@@ -28,7 +28,7 @@ class music(commands.Cog):
     await self.bot.wavelink.initiate_node(identifier='Main'
     host='lavalink.darrennathanael.com',
     port=2095,
-    rest_uri='http://lavalink.darrennathanael.com:2095
+    rest_uri='http://lavalink.darrennathanael.com:2095',
     password='whatwasthelastingyousaid',
     region='europe')
 
