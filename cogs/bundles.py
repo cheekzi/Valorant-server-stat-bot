@@ -27,7 +27,7 @@ class bundles(commands.Cog):
         await ctx.send(embed=embed)
 
 
-    @commands.command()
+    @commands.command(aliases=['b'])
     async def bundle(self, ctx, name:str):
 
 
@@ -72,25 +72,7 @@ class bundles(commands.Cog):
         except:
             pass
             
-    @bundle.error
-    async def bundle_error(self, ctx, error):
-        if isinstance(error, MissingRequiredArgument):
-
-            text = discord.Embed(
-                description = f'Sorry {ctx.message.author.mention}, You need to give the name of the bundle!',
-                color = discord.Color.red(),
-                title = f"What?"
-            )
-            text.add_field(name ="USAGE", value = f"`{prefix}bundle <name>`\n e.g. `{prefix}bundle Origin` \n use `{prefix}bunl` to show all bundles available")
-            await ctx.send(
-                embed=text,
-                components=[
-                    [
-                        Button(label="Support Server", style=5, url="https://discord.gg/m5mSyTV7RR"),
-                        Button(label="Vote", style=5, url="https://top.gg/bot/864451929346539530/vote")
-                    ]
-                ]
-            )
+    
         
 
 
