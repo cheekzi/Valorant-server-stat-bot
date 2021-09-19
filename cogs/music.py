@@ -24,7 +24,16 @@ class music(commands.Cog):
       await voice_channel.connect()
     ctx.voice_client.stop()
     FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-    YDL_OPTIONS = {'format':"bestaudio"}
+    YDL_OPTIONS = {
+      'format': 'bestaudio/best',
+      'noplaylist':'True',
+      'outtmpl': 'song.%(ext)s'
+      'postprocessors': [{
+          'key': 'FFmpegExtractAudio',
+          'preferredcodec': 'mp3',
+          'preferredquality': '192',
+      }],
+    }
 
     with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
       info = ydl.extract_info(url, download=False)
