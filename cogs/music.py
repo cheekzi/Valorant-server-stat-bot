@@ -12,8 +12,8 @@ with open ('././config/config.json', 'r') as f:
 
 
 class music(commands.Cog):
-  def __init__(self, client):
-    self.client = client
+  def __init__(self, bot):
+    self.bot = bot
     
     if not hasattr(bot, 'wavelink'):
       self.bot.wavelink = wavelink.Client(bot=self.bot)
