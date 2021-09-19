@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 from discord_components import *
 import youtube_dl
+import wavelink
 from discord.ext.commands.errors import MissingRequiredArgument
 
 with open ('././config/config.json', 'r') as f:
@@ -13,46 +14,51 @@ with open ('././config/config.json', 'r') as f:
 class music(commands.Cog):
   def __init__(self, client):
     self.client = client
-
-
-  @commands.command(aliases=['pl'])
-  async def play(self, ctx, url):
-    if ctx.author.voice is None:
-      await ctx.send("You're not in a voice channel!")
-    voice_channel = ctx.author.voice.channel
-    if ctx.voice_client is None:
-      await voice_channel.connect()
-    ctx.voice_client.stop()
-    FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-    YDL_OPTIONS = {
-      'format': 'bestaudio/best',
-      'noplaylist':'True',
-      'outtmpl': 'song.%(ext)s',
-      'postprocessors': [{
-          'key': 'FFmpegExtractAudio',
-          'preferredcodec': 'mp3',
-          'preferredquality': '192',
-      }],
-    }
-
-    with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
-      info = ydl.extract_info(url, download=False)
-      url2 = info['formats'][0]['url']
-      source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
-      ctx.voice_client.play(source)
     
-  @commands.command(aliases=['d'])
-  async def disconnect(self,ctx):
-    await ctx.voice_client.disconnect()
+    if not hasattr(bot, 'wavelink'):
+      self.bot.wavelink = wavelink.Client(bot=self.bot)
 
-  @commands.command(aliases=['p'])
-  async def pause(self,ctx):
-    await ctx.voice_client.pause()
+    self.bot.loop.create_task(self.start_nodes())
+    
+  async def start_nodes(self):
+    await self.bot.wait_until_ready()
 
-  @commands.command(aliases=['r'])
-  async def resume(self,ctx):
-    await ctx.voice_client.resume()
+    # Initiate our nodes. For this example we will use one server.
+    # Region should be a discord.py guild.region e.g sydney or us_central (Though this is not technically required)
+    await self.bot.wavelink.initiate_node(host='127.0.0.1',
+                                          port=2333,
+                                          rest_uri='http://127.0.0.1:2333',
+                                          password='youshallnotpass',
+                                          identifier='TEST',
+                                          region=discord.Guild.region)
 
+    
+  @commands.command(name='connect')
+  async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
+    if not channel:
+      try:
+        channel = ctx.author.voice.channel
+      except AttributeError:
+        raise discord.DiscordException('No channel to join. Please either specify a valid channel or join one.')
+
+    player = self.bot.wavelink.get_player(ctx.guild.id)
+    await ctx.send(f'Connecting to **`{channel.name}`**')
+    await player.connect(channel.id)
+
+  @commands.command()
+  async def play(self, ctx, *, query: str):
+    tracks = await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
+
+    if not tracks:
+      return await ctx.send('Could not find any songs with that query.')
+
+    player = self.bot.wavelink.get_player(ctx.guild.id)
+    if not player.is_connected:
+      await ctx.invoke(self.connect_)
+
+    await ctx.send(f'Added {str(tracks[0])} to the queue.')
+    await player.play(tracks[0])
+      
 def setup(client):
   client.add_cog(music(client))
   print("music      | Imported")   
