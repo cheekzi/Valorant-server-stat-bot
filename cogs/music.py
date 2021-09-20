@@ -52,13 +52,6 @@ class music(commands.Cog):
 
   @commands.command()
   async def play(self, ctx, *, query: str):
-    if not hasattr(self.bot, 'wavelink'):
-      self.bot.wavelink = wavelink.Client(bot=self.bot)
-    try:
-      self.bot.loop.create_task(self.start_nodes())
-    except:
-      print("Exception in Print")
-    
     tracks = await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
 
     if not tracks:
