@@ -22,7 +22,7 @@ with open ('config/config.json', 'r') as f:
 
 
 
-bot = commands.Bot(command_prefix=f'{prefix}') #defining bot prefix 
+bot = commands.Bot(command_prefix=['!', '-']) #defining bot prefix 
 
 bot.remove_command('help')
 
