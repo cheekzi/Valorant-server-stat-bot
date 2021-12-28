@@ -230,6 +230,7 @@ class itemshop(commands.Cog):
                     
                 
                 except:
+                    jkbkj
                     await ctx.send("Loading complete!")
                     pass
         except Exception as e:
