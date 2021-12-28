@@ -102,7 +102,6 @@ def skins(entitlements_token, access_token, user_id, region):
     data = requests.get(f"https://pd.{region}.a.pvp.net/store/v1/offers/", headers=headers)
 
     offers_data = data.json()
-    print(offers_data)
 
 
 
