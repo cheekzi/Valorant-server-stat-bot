@@ -57,24 +57,20 @@ def skins(entitlements_token, access_token, user_id, region):
     r = requests.get(f'https://pd.{region}.a.pvp.net/store/v2/storefront/{user_id}', headers=headers)
 
     skins_data = r.json()
+    print('Skins Data: ')
+    print(skins_data)
     single_skins = skins_data["SkinsPanelLayout"]["SingleItemOffers"]
-    print("single_skins: ")
-    print(single_skins)
 
-    headers = {
-        'X-Riot-Entitlements-JWT': entitlements_token,
-        'Authorization': f'Bearer {access_token}',
-        'X-Riot-ClientVersion': getVersion(),
-        "X-Riot-ClientPlatform": "ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9"
-    }
 
-    r = requests.get(f'https://shared.{region}.a.pvp.net/content-service/v3/content/', headers=headers)
+    r = requests.get('https://valorant-api.com/v1/weapons/skins')
 
     content_data = r.json()
     print("content_data: ")
     print(content_data)
 
-
+    r = request.get('https://valorant-api.com/v1/bundles')
+    
+    bundle_data = r.json()
 
 
     single_skins_images = []
@@ -104,46 +100,42 @@ def skins(entitlements_token, access_token, user_id, region):
     offers_data = data.json()
 
 
-
-    for row in content_data:
-        print("Row: " + row)
-        for row_small in content_data[row]:
-            print(row_small)
-            if skins_data["FeaturedBundle"]["Bundle"]["DataAssetID"].upper() in str(row_small):
-                r_bundle_data = requests.get(f"https://valorant-api.com/v1/bundles/{row_small['ID']}")
-                bundle_data = r_bundle_data.json()
-                bundle_name = row_small['Name']
-                try:
-                    bundle_image = bundle_data['data']['displayIcon']
-                except KeyError:
-                    bundle_image = "https://notyetinvalorant-api.com"
+    for row_small in bundle_data['data']:
+        print(row_small)
+        if skins_data["FeaturedBundle"]["Bundle"]["DataAssetID"] in str(row_small):
+            r_bundle_data = requests.get(f"https://valorant-api.com/v1/bundles/{row_small['uuid']}")
+            bundle_data = r_bundle_data.json()
+            bundle_name = row_small['Name']
+            try:
+                bundle_image = bundle_data['data']['displayIcon']
+            except KeyError:
+                bundle_image = "https://notyetinvalorant-api.com"
 
     daily_reset = skins_data["SkinsPanelLayout"]["SingleItemOffersRemainingDurationInSeconds"]
 
     skin_counter = 0
    
     for skin in single_skins:
-        for row in content_data:
-            for row_small in content_data[row]:
-                if skin.upper() in str(row_small):
+        for row_small in content_data['data']:
+            if skin == row_small['uuid']:
 
-                    if skin_counter == 0:
-                        skin1_name = row_small['Name']
-                        skin1_image = single_skins_images[skin_counter]
-                        skin1_price = priceconvert(skin, offers_data)
-                    elif skin_counter == 1:
-                        skin2_name = row_small['Name']
-                        skin2_image = single_skins_images[skin_counter]
-                        skin2_price = priceconvert(skin, offers_data)
-                    elif skin_counter == 2:
-                        skin3_name = row_small['Name']
-                        skin3_image = single_skins_images[skin_counter]
-                        skin3_price = priceconvert(skin, offers_data)
-                    elif skin_counter == 3:
-                        skin4_name = row_small['Name']
-                        skin4_image = single_skins_images[skin_counter]
-                        skin4_price = priceconvert(skin, offers_data)
-                    skin_counter += 1
+                if skin_counter == 0:
+                    skin1_name = row_small['displayName']
+                    skin1_image = single_skins_images[skin_counter]
+                    skin1_price = priceconvert(skin, offers_data)
+                elif skin_counter == 1:
+                    skin2_name = row_small['displayName']
+                    skin2_image = single_skins_images[skin_counter]
+                    skin2_price = priceconvert(skin, offers_data)
+                elif skin_counter == 2:
+                    skin3_name = row_small['displayName']
+                    skin3_image = single_skins_images[skin_counter]
+                    skin3_price = priceconvert(skin, offers_data)
+                elif skin_counter == 3:
+                    skin4_name = row_small['displayName']
+                    skin4_image = single_skins_images[skin_counter]
+                    skin4_price = priceconvert(skin, offers_data)
+                skin_counter += 1
 
     if daily_reset >= 3600:
         daily_reset_in_ = round(daily_reset / 3600, 0) 
