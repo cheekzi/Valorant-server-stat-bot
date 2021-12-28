@@ -58,7 +58,8 @@ def skins(entitlements_token, access_token, user_id, region):
 
     skins_data = r.json()
     single_skins = skins_data["SkinsPanelLayout"]["SingleItemOffers"]
-    print("single_skins: " + single_skins)
+    print("single_skins: ")
+    print(single_skins)
 
     headers = {
         'X-Riot-Entitlements-JWT': entitlements_token,
@@ -70,7 +71,8 @@ def skins(entitlements_token, access_token, user_id, region):
     r = requests.get(f'https://shared.{region}.a.pvp.net/content-service/v2/content/', headers=headers)
 
     content_data = r.json()
-    print("content_data: " + content_data)
+    print("content_data: ")
+    print(content_data)
 
 
 
