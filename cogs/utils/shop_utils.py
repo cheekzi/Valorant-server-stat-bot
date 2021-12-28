@@ -94,23 +94,23 @@ def skins(entitlements_token, access_token, user_id, region):
             if skin == row_small['uuid']:
 
                 if skin_counter == 0:
-                    skin1_name = row_small['displayName']
-                    skin1_image = row_small['displayIcon']
-                    skin1_price = priceconvert(skin, offers_data)
+                    skins_list['skin1_name'] = row_small['displayName']
+                    skins_list['skin1_image'] = row_small['displayIcon']
+                    skins_list['skin1_price'] = priceconvert(skin, offers_data)
                     print("erste")
                 elif skin_counter == 1:
-                    skin2_name = row_small['displayName']
-                    skin2_image = row_small['displayIcon']
-                    skin2_price = priceconvert(skin, offers_data)
+                    skins_list['skin2_name'] = row_small['displayName']
+                    skins_list['skin2_image'] = row_small['displayIcon']
+                    skins_list['skin2_price'] = priceconvert(skin, offers_data)
                     print("zweite")
                 elif skin_counter == 2:
-                    skin3_name = row_small['displayName']
-                    skin3_image = row_small['displayIcon']
-                    skin3_price = priceconvert(skin, offers_data)
+                    skins_list['skin3_name'] = row_small['displayName']
+                    skins_list['skin3_image'] = row_small['displayIcon']
+                    skins_list['skin3_price'] = priceconvert(skin, offers_data)
                 elif skin_counter == 3:
-                    skin4_name = row_small['displayName']
-                    skin4_image = row_small['displayIcon']
-                    skin4_price = priceconvert(skin, offers_data)
+                    skins_list['skin4_name'] = row_small['displayName']
+                    skins_list['skin4_image'] = row_small['displayIcon']
+                    skins_list['skin4_price'] = priceconvert(skin, offers_data)
                     print("vierte")
                 skin_counter += 1
 
@@ -121,22 +121,10 @@ def skins(entitlements_token, access_token, user_id, region):
     else:
         daily_reset_in_ = round(daily_reset / 60, 2) 
         time_unit = "Mins"
-    print("lel kek")   
+      
     skins_list = {
         "bundle_name": bundle_name,
         "bundle_image": bundle_image,
-        "skin1_name": skin1_name,
-        "skin1_image":skin1_image,
-        "skin1_price":skin1_price,
-        "skin2_name": skin2_name,
-        "skin2_image": skin2_image,
-        "skin2_price": skin2_price,
-        "skin3_name": skin3_name,
-        "skin3_image": skin3_image,
-        "skin3_price": skin3_price,
-        "skin4_name": skin4_name,
-        "skin4_image": skin4_image,
-        "skin4_price": skin4_price,
         "SingleItemOffersRemainingDurationInSeconds": daily_reset_in_,
         "time_units":time_unit
     }
