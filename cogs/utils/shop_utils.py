@@ -45,6 +45,34 @@ def priceconvert(skinUuid, offers_data):
         if row["OfferID"] == skinUuid:
             for cost in row["Cost"]:
                 return row["Cost"][cost]
+            
+async def convertSkins(single_skins, content_data, skins_list):
+    skin_counter = 0
+   
+    for skin in single_skins:
+        for row_small in content_data['data']:
+            if skin == row_small['uuid']:
+
+                if skin_counter == 0:
+                    skins_list['skin1_name'] = row_small['displayName']
+                    skins_list['skin1_image'] = row_small['displayIcon']
+                    skins_list['skin1_price'] = priceconvert(skin, offers_data)
+                    print("erste")
+                elif skin_counter == 1:
+                    skins_list['skin2_name'] = row_small['displayName']
+                    skins_list['skin2_image'] = row_small['displayIcon']
+                    skins_list['skin2_price'] = priceconvert(skin, offers_data)
+                    print("zweite")
+                elif skin_counter == 2:
+                    skins_list['skin3_name'] = row_small['displayName']
+                    skins_list['skin3_image'] = row_small['displayIcon']
+                    skins_list['skin3_price'] = priceconvert(skin, offers_data)
+                elif skin_counter == 3:
+                    skins_list['skin4_name'] = row_small['displayName']
+                    skins_list['skin4_image'] = row_small['displayIcon']
+                    skins_list['skin4_price'] = priceconvert(skin, offers_data)
+                    print("vierte")
+                skin_counter += 1
     
 
 def skins(entitlements_token, access_token, user_id, region):
@@ -86,33 +114,15 @@ def skins(entitlements_token, access_token, user_id, region):
             bundle_name = row_small['displayName']
 
     daily_reset = skins_data["SkinsPanelLayout"]["SingleItemOffersRemainingDurationInSeconds"]
+    
+    skins_list = {
+        "bundle_name": bundle_name,
+        "bundle_image": bundle_image,
+        "SingleItemOffersRemainingDurationInSeconds": daily_reset_in_,
+        "time_units":time_unit
+    }
 
-    skin_counter = 0
-   
-    for skin in single_skins:
-        for row_small in content_data['data']:
-            if skin == row_small['uuid']:
-
-                if skin_counter == 0:
-                    skins_list['skin1_name'] = row_small['displayName']
-                    skins_list['skin1_image'] = row_small['displayIcon']
-                    skins_list['skin1_price'] = priceconvert(skin, offers_data)
-                    print("erste")
-                elif skin_counter == 1:
-                    skins_list['skin2_name'] = row_small['displayName']
-                    skins_list['skin2_image'] = row_small['displayIcon']
-                    skins_list['skin2_price'] = priceconvert(skin, offers_data)
-                    print("zweite")
-                elif skin_counter == 2:
-                    skins_list['skin3_name'] = row_small['displayName']
-                    skins_list['skin3_image'] = row_small['displayIcon']
-                    skins_list['skin3_price'] = priceconvert(skin, offers_data)
-                elif skin_counter == 3:
-                    skins_list['skin4_name'] = row_small['displayName']
-                    skins_list['skin4_image'] = row_small['displayIcon']
-                    skins_list['skin4_price'] = priceconvert(skin, offers_data)
-                    print("vierte")
-                skin_counter += 1
+    await convertSkins(single_skins, content_data, skins_list)
 
     if daily_reset >= 3600:
         daily_reset_in_ = round(daily_reset / 3600, 0) 
@@ -122,12 +132,6 @@ def skins(entitlements_token, access_token, user_id, region):
         daily_reset_in_ = round(daily_reset / 60, 2) 
         time_unit = "Mins"
       
-    skins_list = {
-        "bundle_name": bundle_name,
-        "bundle_image": bundle_image,
-        "SingleItemOffersRemainingDurationInSeconds": daily_reset_in_,
-        "time_units":time_unit
-    }
 
     return skins_list
 
