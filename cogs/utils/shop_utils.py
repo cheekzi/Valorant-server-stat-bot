@@ -46,39 +46,9 @@ def priceconvert(skinUuid, offers_data):
             for cost in row["Cost"]:
                 return row["Cost"][cost]
             
-async def convertSkins(single_skins, content_data, skins_list):
-    skin_counter = 0
-   
-    for skin in single_skins:
-        print("Skin:")
-        print(skin)
-        for row_small in content_data['data']:
-            print(row_small['uuid'])
-            if skin in str(row_small):
-
-                if skin_counter == 0:
-                    skins_list['skin1_name'] = row_small['displayName']
-                    skins_list['skin1_image'] = row_small['displayIcon']
-                    skins_list['skin1_price'] = priceconvert(skin, offers_data)
-                    print("erste")
-                elif skin_counter == 1:
-                    skins_list['skin2_name'] = row_small['displayName']
-                    skins_list['skin2_image'] = row_small['displayIcon']
-                    skins_list['skin2_price'] = priceconvert(skin, offers_data)
-                    print("zweite")
-                elif skin_counter == 2:
-                    skins_list['skin3_name'] = row_small['displayName']
-                    skins_list['skin3_image'] = row_small['displayIcon']
-                    skins_list['skin3_price'] = priceconvert(skin, offers_data)
-                elif skin_counter == 3:
-                    skins_list['skin4_name'] = row_small['displayName']
-                    skins_list['skin4_image'] = row_small['displayIcon']
-                    skins_list['skin4_price'] = priceconvert(skin, offers_data)
-                    print("vierte")
-                skin_counter += 1
     
 
-async def skins(entitlements_token, access_token, user_id, region):
+def skins(entitlements_token, access_token, user_id, region):
 
     headers = {
         'X-Riot-Entitlements-JWT': entitlements_token,
@@ -133,7 +103,30 @@ async def skins(entitlements_token, access_token, user_id, region):
         "time_units":time_unit
     }
 
-    await convertSkins(single_skins, content_data, skins_list) 
+    skin_counter = 0
+   
+    for skin in single_skins:
+        for row_small in content_data['data']:
+            
+            if skin in str(row_small):
+
+                if skin_counter == 0:
+                    skins_list['skin1_name'] = row_small['displayName']
+                    skins_list['skin1_image'] = row_small['displayIcon']
+                    skins_list['skin1_price'] = priceconvert(skin, offers_data)
+                elif skin_counter == 1:
+                    skins_list['skin2_name'] = row_small['displayName']
+                    skins_list['skin2_image'] = row_small['displayIcon']
+                    skins_list['skin2_price'] = priceconvert(skin, offers_data)
+                elif skin_counter == 2:
+                    skins_list['skin3_name'] = row_small['displayName']
+                    skins_list['skin3_image'] = row_small['displayIcon']
+                    skins_list['skin3_price'] = priceconvert(skin, offers_data)
+                elif skin_counter == 3:
+                    skins_list['skin4_name'] = row_small['displayName']
+                    skins_list['skin4_image'] = row_small['displayIcon']
+                    skins_list['skin4_price'] = priceconvert(skin, offers_data)
+                skin_counter += 1 
 
     return skins_list
 
