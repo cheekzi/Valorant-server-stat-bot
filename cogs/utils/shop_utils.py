@@ -58,6 +58,7 @@ def skins(entitlements_token, access_token, user_id, region):
 
     skins_data = r.json()
     single_skins = skins_data["SkinsPanelLayout"]["SingleItemOffers"]
+    print(single_skins)
 
     headers = {
         'X-Riot-Entitlements-JWT': entitlements_token,
@@ -69,6 +70,7 @@ def skins(entitlements_token, access_token, user_id, region):
     r = requests.get(f'https://shared.{region}.a.pvp.net/content-service/v2/content/', headers=headers)
 
     content_data = r.json()
+    print(content_data)
 
 
 
@@ -98,11 +100,14 @@ def skins(entitlements_token, access_token, user_id, region):
     data = requests.get(f"https://pd.{region}.a.pvp.net/store/v1/offers/", headers=headers)
 
     offers_data = data.json()
+    print(offers_data)
 
 
 
     for row in content_data:
+        print("Row: " + row)
         for row_small in content_data[row]:
+            print(row_small)
             if skins_data["FeaturedBundle"]["Bundle"]["DataAssetID"].upper() in str(row_small):
                 r_bundle_data = requests.get(f"https://valorant-api.com/v1/bundles/{row_small['ID']}")
                 bundle_data = r_bundle_data.json()
