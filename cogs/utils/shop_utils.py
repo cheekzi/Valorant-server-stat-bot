@@ -97,10 +97,12 @@ def skins(entitlements_token, access_token, user_id, region):
                     skin1_name = row_small['displayName']
                     skin1_image = row_small['displayIcon']
                     skin1_price = priceconvert(skin, offers_data)
+                    print("erste")
                 elif skin_counter == 1:
                     skin2_name = row_small['displayName']
                     skin2_image = row_small['displayIcon']
                     skin2_price = priceconvert(skin, offers_data)
+                    print("zweite")
                 elif skin_counter == 2:
                     skin3_name = row_small['displayName']
                     skin3_image = row_small['displayIcon']
@@ -109,6 +111,7 @@ def skins(entitlements_token, access_token, user_id, region):
                     skin4_name = row_small['displayName']
                     skin4_image = row_small['displayIcon']
                     skin4_price = priceconvert(skin, offers_data)
+                    print("vierte)
                 skin_counter += 1
 
     if daily_reset >= 3600:
