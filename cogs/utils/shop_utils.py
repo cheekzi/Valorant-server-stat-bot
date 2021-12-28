@@ -115,15 +115,6 @@ async def skins(entitlements_token, access_token, user_id, region):
 
     daily_reset = skins_data["SkinsPanelLayout"]["SingleItemOffersRemainingDurationInSeconds"]
     
-    skins_list = {
-        "bundle_name": bundle_name,
-        "bundle_image": bundle_image,
-        "SingleItemOffersRemainingDurationInSeconds": daily_reset_in_,
-        "time_units":time_unit
-    }
-
-    await convertSkins(single_skins, content_data, skins_list)
-
     if daily_reset >= 3600:
         daily_reset_in_ = round(daily_reset / 3600, 0) 
         time_unit = "Hrs"
@@ -131,7 +122,15 @@ async def skins(entitlements_token, access_token, user_id, region):
     else:
         daily_reset_in_ = round(daily_reset / 60, 2) 
         time_unit = "Mins"
-      
+    
+    skins_list = {
+        "bundle_name": bundle_name,
+        "bundle_image": bundle_image,
+        "SingleItemOffersRemainingDurationInSeconds": daily_reset_in_,
+        "time_units":time_unit
+    }
+
+    await convertSkins(single_skins, content_data, skins_list) 
 
     return skins_list
 
