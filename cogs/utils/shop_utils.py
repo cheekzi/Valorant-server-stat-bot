@@ -75,7 +75,7 @@ async def convertSkins(single_skins, content_data, skins_list):
                 skin_counter += 1
     
 
-def skins(entitlements_token, access_token, user_id, region):
+async def skins(entitlements_token, access_token, user_id, region):
 
     headers = {
         'X-Riot-Entitlements-JWT': entitlements_token,
