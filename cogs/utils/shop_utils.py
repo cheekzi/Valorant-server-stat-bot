@@ -111,7 +111,7 @@ def skins(entitlements_token, access_token, user_id, region):
                     skin4_name = row_small['displayName']
                     skin4_image = row_small['displayIcon']
                     skin4_price = priceconvert(skin, offers_data)
-                    print("vierte)
+                    print("vierte")
                 skin_counter += 1
 
     if daily_reset >= 3600:
@@ -121,7 +121,7 @@ def skins(entitlements_token, access_token, user_id, region):
     else:
         daily_reset_in_ = round(daily_reset / 60, 2) 
         time_unit = "Mins"
-        
+    print("lel kek")   
     skins_list = {
         "bundle_name": bundle_name,
         "bundle_image": bundle_image,
