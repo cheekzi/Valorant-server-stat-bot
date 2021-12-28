@@ -57,34 +57,14 @@ def skins(entitlements_token, access_token, user_id, region):
     r = requests.get(f'https://pd.{region}.a.pvp.net/store/v2/storefront/{user_id}', headers=headers)
 
     skins_data = r.json()
-    print('Skins Data: ')
-    print(skins_data)
     single_skins = skins_data["SkinsPanelLayout"]["SingleItemOffers"]
 
 
     r = requests.get('https://valorant-api.com/v1/weapons/skins')
-
     content_data = r.json()
-    print("content_data: ")
-    print(content_data)
-
-    r = requests.get('https://valorant-api.com/v1/bundles')
     
+    r = requests.get('https://valorant-api.com/v1/bundles')
     bundle_data = r.json()
-
-
-    single_skins_images = []
-    single_skins_tiers_uuids = []
-
-
- 
-
-    for skin in single_skins:
-        
-        r = requests.get(f"https://valorant-api.com/v1/weapons/skinlevels/{skin}")
-        parsed_data = r.json()
-        single_skins_images.append(parsed_data["data"]["displayIcon"])
-        single_skins_tiers_uuids.append(parsed_data["data"]["uuid"])
 
 
 
@@ -101,15 +81,9 @@ def skins(entitlements_token, access_token, user_id, region):
 
 
     for row_small in bundle_data['data']:
-        print(row_small)
-        if skins_data["FeaturedBundle"]["Bundle"]["DataAssetID"] in str(row_small):
-            r_bundle_data = requests.get(f"https://valorant-api.com/v1/bundles/{row_small['uuid']}")
-            bundle_data = r_bundle_data.json()
-            bundle_name = row_small['Name']
-            try:
-                bundle_image = bundle_data['data']['displayIcon']
-            except KeyError:
-                bundle_image = "https://notyetinvalorant-api.com"
+        if skins_data["FeaturedBundle"]["Bundle"]["DataAssetID"] == row_small['uuid']:
+            bundle_image = row_small['displayIcon']
+            bundle_name = row_small['displayName']
 
     daily_reset = skins_data["SkinsPanelLayout"]["SingleItemOffersRemainingDurationInSeconds"]
 
@@ -121,19 +95,19 @@ def skins(entitlements_token, access_token, user_id, region):
 
                 if skin_counter == 0:
                     skin1_name = row_small['displayName']
-                    skin1_image = single_skins_images[skin_counter]
+                    skin1_image = row_small['displayIcon']
                     skin1_price = priceconvert(skin, offers_data)
                 elif skin_counter == 1:
                     skin2_name = row_small['displayName']
-                    skin2_image = single_skins_images[skin_counter]
+                    skin2_image = row_small['displayIcon']
                     skin2_price = priceconvert(skin, offers_data)
                 elif skin_counter == 2:
                     skin3_name = row_small['displayName']
-                    skin3_image = single_skins_images[skin_counter]
+                    skin3_image = row_small['displayIcon']
                     skin3_price = priceconvert(skin, offers_data)
                 elif skin_counter == 3:
                     skin4_name = row_small['displayName']
-                    skin4_image = single_skins_images[skin_counter]
+                    skin4_image = row_small['displayIcon']
                     skin4_price = priceconvert(skin, offers_data)
                 skin_counter += 1
 
