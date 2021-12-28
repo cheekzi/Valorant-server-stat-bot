@@ -51,9 +51,9 @@ async def convertSkins(single_skins, content_data, skins_list):
    
     for skin in single_skins:
         for row_small in content_data['data']:
-            print("a")
+            print(skin)
+            print(row_small['uuid'])
             if skin == row_small['uuid']:
-                print("b")
 
                 if skin_counter == 0:
                     skins_list['skin1_name'] = row_small['displayName']
