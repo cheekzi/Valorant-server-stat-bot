@@ -233,6 +233,7 @@ class itemshop(commands.Cog):
                     await ctx.send("Loading complete!")
                     pass
         except Exception as e:
+            kjafa();
             print(e)
             embed= discord.Embed(
                 color=discord.Color.red()
