@@ -68,7 +68,7 @@ def skins(entitlements_token, access_token, user_id, region):
     print("content_data: ")
     print(content_data)
 
-    r = request.get('https://valorant-api.com/v1/bundles')
+    r = requests.get('https://valorant-api.com/v1/bundles')
     
     bundle_data = r.json()
 
