@@ -30,8 +30,6 @@ bot.remove_command('help')
 async def create_db_pool():
     bot.pg_con = await asyncpg.create_pool(f"{database_url}")
     print("DATABASE     | Connected")
-    nuser = await bot.pg_con.fetch("SELECT * FROM riotpwd")
-    print(nuser)
 
 
 @bot.event
