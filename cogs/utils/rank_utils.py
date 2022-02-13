@@ -68,7 +68,7 @@ def username_to_data(username, password):
     headers['X-Riot-Entitlements-JWT'] = entitlements_token
     del headers['Host']
     session.close()
-    return user_id, headers, {}
+    return headers, {}, user_id
 
 
 
