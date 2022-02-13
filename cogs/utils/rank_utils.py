@@ -25,8 +25,8 @@ def username_to_data(username, password):
     print(r.text)
     data = {
         'type': 'auth',
-        'username': self.username,
-        'password': self.password
+        'username': username,
+        'password': password
     }
     r = session.put(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
     pattern = re.compile('access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)')
