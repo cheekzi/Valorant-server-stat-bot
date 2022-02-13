@@ -4,58 +4,58 @@ import re
 import socket
 
 def username_to_data(username, password):
-    print("lol")
     headers = OrderedDict({
             'User-Agent': 'RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)'
-    })
-    session = requests.session()
-    session.headers = headers
-    data = {
-        'client_id': 'play-valorant-web-prod',
-        'nonce': '1',
-        'redirect_uri': 'https://playvalorant.com/opt_in',
-        'response_type': 'token id_token',
-    }
-    r = session.post('https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
-    print(r)
+        })
 
-    data = {
-        'type': 'auth',
-        'username': username,
-        'password': password
-    }
-    r = session.put('https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
-    print(r)
-    pattern = re.compile(
-        'access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)')
-    data = pattern.findall(r.json()['response']['parameters']['uri'])[0]
-    access_token = data[0]
-    print(data)
+        session = requests.session()
+        session.headers = headers
 
-    headers = {
+        data = {
+            'client_id': 'play-valorant-web-prod',
+            'nonce': '1',
+            'redirect_uri': 'https://playvalorant.com/opt_in',
+            'response_type': 'token id_token',
+        }
+        r = session.post(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
+
+        print(r.text)
+        data = {
+            'type': 'auth',
+            'username': username,
+            'password': password
+        }
+        r = session.put(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
+        pattern = re.compile('access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)')
+        data = pattern.findall(r.json()['response']['parameters']['uri'])[0]
+        access_token = data[0]
+        print('Access Token: ' + access_token)
+
+        headers = {
             'Accept-Encoding': 'gzip, deflate, br',
             'Host': "entitlements.auth.riotgames.com",
             'User-Agent': 'RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)',
             'Authorization': f'Bearer {access_token}',
-    }
-    r = session.post('https://entitlements.auth.riotgames.com/api/token/v1', headers=headers, json={})
-    entitlements_token = r.json()['entitlements_token']
+        }
+        r = session.post('https://entitlements.auth.riotgames.com/api/token/v1', headers=headers, json={})
+        entitlements_token = r.json()['entitlements_token']
+        print('Entitlements Token: ' + entitlements_token)
 
-    headers = {
+        headers = {
             'Accept-Encoding': 'gzip, deflate, br',
             'Host': "auth.riotgames.com",
             'User-Agent': 'RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)',
             'Authorization': f'Bearer {access_token}',
-    }
-    
-    r = session.post('https://auth.riotgames.com/userinfo', headers=headers, json={})
-    user_id = r.json()['sub']
-    
-    headers['X-Riot-Entitlements-JWT'] = entitlements_token
-    del headers['Host']
-    session.close()
-    print([access_token, entitlements_token, user_id])
-    return [access_token, entitlements_token, user_id]
+        }
+
+        r = session.post('https://auth.riotgames.com/userinfo', headers=headers, json={})
+        user_id = r.json()['sub']
+        # print('User ID: ' + user_id)
+        headers['X-Riot-Entitlements-JWT'] = entitlements_token
+        del headers['Host']
+        session.close()
+        print("lol")
+        return user_id, headers, {}
 
 
 
