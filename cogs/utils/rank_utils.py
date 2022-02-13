@@ -2,6 +2,7 @@ import  requests
 import re
 
 def username_to_data(username, password):
+    print("lol")
     session = requests.session()
     data = {
         'client_id': 'play-valorant-web-prod',
@@ -21,6 +22,7 @@ def username_to_data(username, password):
         'access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)')
     data = pattern.findall(r.json()['response']['parameters']['uri'])[0]
     access_token = data[0]
+    print(data)
 
     headers = {
         'Authorization': f'Bearer {access_token}',
