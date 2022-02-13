@@ -1,14 +1,25 @@
+import ssl
 import requests
 from collections import OrderedDict
 import re
 import socket
+from requests.adapters import HTTPAdapter
+from urllib3 import PoolManager
 
 def username_to_data(username, password):
+    class SSLAdapter(HTTPAdapter):
+        def init_poolmanager(self, connections, maxsize, block=False):
+            self.poolmanager = PoolManager(num_pools=connections,
+                                        maxsize=maxsize,
+                                        block=block,
+                                        ssl_version=ssl.PROTOCOL_TLSv1_2)
+
     headers = OrderedDict({
         'User-Agent': 'RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)'
     })
 
     session = requests.session()
+    session.mount('https://auth.riotgames.com/api/v1/authorization', SSLAdapter())
     session.headers = headers
 
     data = {
@@ -54,9 +65,7 @@ def username_to_data(username, password):
     headers['X-Riot-Entitlements-JWT'] = entitlements_token
     del headers['Host']
     session.close()
-    print("lol")
     return user_id, headers, {}
-
 
 
 
