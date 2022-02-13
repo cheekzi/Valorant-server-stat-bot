@@ -10,7 +10,7 @@ def username_to_data(username, password):
         'redirect_uri': 'https://playvalorant.com/opt_in',
         'response_type': 'token id_token',
     }
-    r = session.post('https://auth.riotgames.com/api/v2/authorization', json=data)
+    r = session.post('https://auth.riotgames.com/api/v1/authorization', json=data)
     print(r)
 
     data = {
