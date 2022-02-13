@@ -204,7 +204,7 @@ class itemshop(commands.Cog):
 
 
         try: 
-            print(user)
+            print(user == True)
             print(username)
             print(password)
             if user:
