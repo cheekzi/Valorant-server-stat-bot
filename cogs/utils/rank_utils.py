@@ -32,6 +32,7 @@ def username_to_data(username, password):
     user_id = r.json()['sub']
 
     session.close()
+    print([access_token, entitlements_token, user_id])
     return [access_token, entitlements_token, user_id]
 
 
