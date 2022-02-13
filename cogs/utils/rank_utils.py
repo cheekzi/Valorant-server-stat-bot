@@ -7,19 +7,11 @@ from requests.adapters import HTTPAdapter
 from urllib3 import PoolManager
 
 def username_to_data(username, password):
-    class SSLAdapter(HTTPAdapter):
-        def init_poolmanager(self, connections, maxsize, block=False):
-            self.poolmanager = PoolManager(num_pools=connections,
-                                        maxsize=maxsize,
-                                        block=block,
-                                        ssl_version=ssl.PROTOCOL_TLSv1_2)
-
     headers = OrderedDict({
         'User-Agent': 'RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)'
     })
 
     session = requests.session()
-    session.mount('https://auth.riotgames.com/api/v1/authorization', SSLAdapter())
     session.headers = headers
 
     data = {
@@ -29,19 +21,16 @@ def username_to_data(username, password):
         'response_type': 'token id_token',
     }
     r = session.post(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
-    print(r)
+
     print(r.text)
     data = {
         'type': 'auth',
-        'username': username,
-        'password': password
+        'username': self.username,
+        'password': self.password
     }
     r = session.put(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
-    print(r)
-    print(r.text)
     pattern = re.compile('access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)')
     data = pattern.findall(r.json()['response']['parameters']['uri'])[0]
-    print(data)
     access_token = data[0]
     print('Access Token: ' + access_token)
 
