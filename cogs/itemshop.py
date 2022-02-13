@@ -203,10 +203,7 @@ class itemshop(commands.Cog):
         
 
 
-        try: 
-            print(user == True)
-            print(username)
-            print(password)
+        try:
             if user:
                 await ctx.send("Loading shop...")
                 user_data = username_to_data(username, password)
