@@ -1,10 +1,7 @@
-import ssl
 import requests
 from collections import OrderedDict
 import re
 import socket
-from requests.adapters import HTTPAdapter
-from urllib3 import PoolManager
 
 def username_to_data(username, password):
     headers = OrderedDict({
@@ -21,8 +18,7 @@ def username_to_data(username, password):
         'response_type': 'token id_token',
     }
     r = session.post(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
-
-    print(r.text)
+    
     data = {
         'type': 'auth',
         'username': username,
@@ -32,7 +28,6 @@ def username_to_data(username, password):
     pattern = re.compile('access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)')
     data = pattern.findall(r.json()['response']['parameters']['uri'])[0]
     access_token = data[0]
-    print('Access Token: ' + access_token)
 
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
@@ -42,7 +37,6 @@ def username_to_data(username, password):
     }
     r = session.post('https://entitlements.auth.riotgames.com/api/token/v1', headers=headers, json={})
     entitlements_token = r.json()['entitlements_token']
-    print('Entitlements Token: ' + entitlements_token)
 
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
