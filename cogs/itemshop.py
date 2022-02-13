@@ -188,7 +188,6 @@ class itemshop(commands.Cog):
         
         try:
             user = await self.client.pg_con.fetchrow("SELECT * FROM riotpwd WHERE user_id = $1", author_id)
-            print("user: " + user)
             username = user['username']
             password = user['password']
             region = user['region']
@@ -205,6 +204,7 @@ class itemshop(commands.Cog):
 
 
         try: 
+            print("user: " + user)
             if user:
                 await ctx.send("Loading shop...")
                 user_data = username_to_data(username, password)
