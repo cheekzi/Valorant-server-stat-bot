@@ -51,7 +51,7 @@ def username_to_data(username, password):
     headers['X-Riot-Entitlements-JWT'] = entitlements_token
     del headers['Host']
     session.close()
-    return headers, {}, user_id
+    return access_token, entitlements_token, user_id
 
 def getVersion():
     versionData = requests.get("https://valorant-api.com/v1/version")
