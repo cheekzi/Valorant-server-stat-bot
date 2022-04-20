@@ -210,7 +210,7 @@ class itemshop(commands.Cog):
                 access_token = user_data[0]
                 entitlements_token = user_data[1]
                 user_id = user_data[2]
-                skin_data = skins(entitlements_token, access_token, "c18cc4ea-654f-5564-b756-11198e55be66", region)
+                skin_data = skins(entitlements_token, access_token, user_id, region)
                 embed = discord.Embed(title=skin_data["bundle_name"], color=0x00FC7E)
                 embed.set_image(url=skin_data["bundle_image"])
                 await ctx.send(embed=embed)
