@@ -2,7 +2,6 @@ import requests
 from collections import OrderedDict
 import re
 import socket
-import time
 
 def username_to_data(username, password):
     headers = OrderedDict({
