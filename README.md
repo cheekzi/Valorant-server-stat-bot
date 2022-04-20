@@ -49,7 +49,7 @@ make sure to put the necessary keys in `config.json` file [present here](https:/
 
 Here for the bot we are using `POSTGRES SQL DATABASE`, if the database URL is not provided `in config.json` the `shop` command will not work.
 If you dont know how to make a postgres database feel free to learn it from youtube or anywhere else. You can also make one postgres SQL DB in heroku
-it is easy to do :)
+it is easy to do- :)
 
 ### DATABASE-SETUP
 
