@@ -1,7 +1,7 @@
 {
     "extension":[
         "cogs.skins",
-        "cogs.music",
+        "cogs.live",
         "cogs.help",
         "cogs.itemshop",
         "cogs.mmr",
@@ -9,6 +9,7 @@
         "cogs.bundles",
         "cogs.rank",
         "cogs.profile",
+        "cogs.music",
         "cogs.recentMatch"
     ]
 }

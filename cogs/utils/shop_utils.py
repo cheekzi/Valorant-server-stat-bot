@@ -2,13 +2,24 @@ import requests
 from collections import OrderedDict
 import re
 import socket
+import ssl
+from requests.adapters import HTTPAdapter
+from urllib3 import PoolManager
+
 
 def username_to_data(username, password):
+    class SSLAdapter(HTTPAdapter):
+        def init_poolmanager(self, connections, maxsize, block=False):
+            self.poolmanager = PoolManager(num_pools=connections,
+                                           maxsize=maxsize,
+                                           block=block,
+                                           ssl_version=ssl.PROTOCOL_TLSv1_2)
     headers = OrderedDict({
         'User-Agent': 'RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)'
     })
 
     session = requests.session()
+    session.mount('https://auth.riotgames.com/api/v1/authorization', SSLAdapter())
     session.headers = headers
 
     data = {
@@ -18,7 +29,6 @@ def username_to_data(username, password):
         'response_type': 'token id_token',
     }
     r = session.post(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
-    
     data = {
         'type': 'auth',
         'username': username,
@@ -26,8 +36,10 @@ def username_to_data(username, password):
     }
     r = session.put(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
     pattern = re.compile('access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)')
+
     data = pattern.findall(r.json()['response']['parameters']['uri'])[0]
     access_token = data[0]
+
 
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
@@ -47,9 +59,7 @@ def username_to_data(username, password):
 
     r = session.post('https://auth.riotgames.com/userinfo', headers=headers, json={})
     user_id = r.json()['sub']
-    # print('User ID: ' + user_id)
-    headers['X-Riot-Entitlements-JWT'] = entitlements_token
-    del headers['Host']
+    #print('User ID: ' + user_id)
     session.close()
     return access_token, entitlements_token, user_id
 
@@ -131,19 +141,19 @@ def skins(entitlements_token, access_token, user_id, region):
 
                 if skin_counter == 0:
                     skins_list['skin1_name'] = row_small['displayName']
-                    skins_list['skin1_image'] = row_small['displayIcon']
+                    skins_list['skin1_image'] = row_small['displayIcon'] if row_small['displayIcon'] is not None else f"https://media.valorant-api.com/weaponskinlevels/{skin}/displayicon.png"
                     skins_list['skin1_price'] = priceconvert(skin, offers_data)
                 elif skin_counter == 1:
                     skins_list['skin2_name'] = row_small['displayName']
-                    skins_list['skin2_image'] = row_small['displayIcon']
+                    skins_list['skin2_image'] = row_small['displayIcon'] if row_small['displayIcon'] is not None else f"https://media.valorant-api.com/weaponskinlevels/{skin}/displayicon.png"
                     skins_list['skin2_price'] = priceconvert(skin, offers_data)
                 elif skin_counter == 2:
                     skins_list['skin3_name'] = row_small['displayName']
-                    skins_list['skin3_image'] = row_small['displayIcon']
+                    skins_list['skin3_image'] = row_small['displayIcon'] if row_small['displayIcon'] is not None else f"https://media.valorant-api.com/weaponskinlevels/{skin}/displayicon.png"
                     skins_list['skin3_price'] = priceconvert(skin, offers_data)
                 elif skin_counter == 3:
                     skins_list['skin4_name'] = row_small['displayName']
-                    skins_list['skin4_image'] = row_small['displayIcon']
+                    skins_list['skin4_image'] = row_small['displayIcon'] if row_small['displayIcon'] is not None else f"https://media.valorant-api.com/weaponskinlevels/{skin}/displayicon.png"
                     skins_list['skin4_price'] = priceconvert(skin, offers_data)
                 skin_counter += 1 
 

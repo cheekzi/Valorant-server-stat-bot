@@ -5,13 +5,23 @@ import requests
 from collections import OrderedDict
 import re
 import socket
+import ssl
+from requests.adapters import HTTPAdapter
+from urllib3 import PoolManager
 
 def username_to_data(username, password):
+    class SSLAdapter(HTTPAdapter):
+        def init_poolmanager(self, connections, maxsize, block=False):
+            self.poolmanager = PoolManager(num_pools=connections,
+                                           maxsize=maxsize,
+                                           block=block,
+                                           ssl_version=ssl.PROTOCOL_TLSv1_2)
     headers = OrderedDict({
         'User-Agent': 'RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)'
     })
 
     session = requests.session()
+    session.mount('https://auth.riotgames.com/api/v1/authorization', SSLAdapter())
     session.headers = headers
 
     data = {
@@ -21,7 +31,6 @@ def username_to_data(username, password):
         'response_type': 'token id_token',
     }
     r = session.post(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
-    
     data = {
         'type': 'auth',
         'username': username,
@@ -29,8 +38,10 @@ def username_to_data(username, password):
     }
     r = session.put(f'https://auth.riotgames.com/api/v1/authorization', json=data, headers=headers)
     pattern = re.compile('access_token=((?:[a-zA-Z]|\d|\.|-|_)*).*id_token=((?:[a-zA-Z]|\d|\.|-|_)*).*expires_in=(\d*)')
+
     data = pattern.findall(r.json()['response']['parameters']['uri'])[0]
     access_token = data[0]
+
 
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
@@ -50,11 +61,9 @@ def username_to_data(username, password):
 
     r = session.post('https://auth.riotgames.com/userinfo', headers=headers, json={})
     user_id = r.json()['sub']
-    # print('User ID: ' + user_id)
-    headers['X-Riot-Entitlements-JWT'] = entitlements_token
-    del headers['Host']
+    #print('User ID: ' + user_id)
     session.close()
-    return headers, {}, user_id
+    return access_token, entitlements_token, user_id
 
 
 

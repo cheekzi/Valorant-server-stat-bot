@@ -55,6 +55,7 @@ if __name__ == "__main__":
             print(f'Error loading {extension}', file=sys.stderr)
             traceback.print_exc()
 
+
 current_date = date.today().strftime("%d")
 if int(os.environ['HEROKU_PLAT']) == 1 and int(current_date) < 25:
     bot.loop.run_until_complete(create_db_pool())
